@@ -58,4 +58,40 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims() {
         return [];
     }    
+
+    //a user can have one job
+    public function job()
+    {
+        return $this->hasOne(Job::class);
+    }
+
+    //reviews to that user
+    public function recievedReview()
+    {
+        return $this->hasMany(Review::class, "to_user_id");
+    }
+
+    //reviews created by the user
+    public function addedReview()
+    {
+        return $this->hasMany(Review::class, "from_user_id");
+    }
+
+    //user is favorite to many users
+    public function isFavorite()
+    {
+        return $this->hasMany(Favorite::class, "to_user_id");
+    }
+
+    //a user has many favorites
+    public function addedFavorite()
+    {
+        return $this->hasMany(Favorite::class, "from_user_id");
+    }
+
+    //user type
+    public function userType()
+    {
+        return $this->belongsTo(User_type::class);
+    }
 }
