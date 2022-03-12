@@ -9,6 +9,10 @@ class User_type extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     //user type
     public function users()
     {
