@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
@@ -35,8 +36,9 @@ class ReviewController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        $user=User::find($request->user_id);
-        $reviews=$user->recievedReview()->get();
+        $reviews= Review::join('users', 'users.id', '=', 'reviews.from_user_id')
+        ->where("reviews.to_user_id", "=", $request->user_id)
+        ->get(['users.name','users.picture_url','reviews.*']);
         return response()->json([
             'message' => 'Success',
             'reviews' => $reviews
