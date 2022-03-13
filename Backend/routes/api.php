@@ -3,6 +3,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ReviewController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,6 +24,7 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']); 
     Route::post('/job', [JobController::class, 'addWorkProfile']);    
-    Route::get('/getjob', [JobController::class, 'getWorkProfile']);    
+    Route::get('/getjob', [JobController::class, 'getWorkProfile']);   
+    Route::post('/review', [ReviewController::class, 'addReview']);  
 });
 

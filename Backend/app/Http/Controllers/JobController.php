@@ -26,7 +26,7 @@ class JobController extends Controller
             ['user_id' => auth()->user()->id]
         ));
         return response()->json([
-            'message' => 'Work profile successfully registered',
+            'message' => 'Work profile added',
             'job' => $job
         ], 201);
     }
