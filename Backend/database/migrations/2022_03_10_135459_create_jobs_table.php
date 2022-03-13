@@ -17,8 +17,8 @@ class CreateJobsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('bio');
-            $table->integer('available')->default(0);
-            $table->integer('rate_per_hour');
+            $table->integer('available')->default('0');
+            $table->decimal('rate_per_hour',10,2);
             $table->integer('category_id');
             $table->integer('user_id');
             $table->timestamps();
