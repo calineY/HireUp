@@ -43,6 +43,27 @@ class ReviewController extends Controller
             'message' => 'Success',
             'reviews' => $reviews
         ], 200);
-
     }
+
+    public function deleteReview(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'id'=>'required|numeric',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $review=Review::find($request->id);
+        if($review->from_user_id==Auth::user()->id){
+            $review->delete();
+            return response()->json([
+                'message' => 'Review deleted',
+                'review' => $review
+            ], 200);
+        }
+        
+        return response()->json([
+            'message' => 'Action not allowed',
+        ], 200);
+    }
+
 }
