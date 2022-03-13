@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\FavoriteController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,5 +29,6 @@ Route::group([
     Route::post('/review', [ReviewController::class, 'addReview']);  
     Route::get('/reviews', [ReviewController::class, 'getReviews']);  
     Route::post('/review', [ReviewController::class, 'deleteReview']);  
+    Route::post('/favorite', [FavoriteController::class, 'addFavorite']);  
 });
 
