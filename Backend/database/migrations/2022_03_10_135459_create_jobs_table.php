@@ -20,7 +20,7 @@ class CreateJobsTable extends Migration
             $table->integer('available')->default('0');
             $table->decimal('rate_per_hour',10,2);
             $table->integer('category_id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unique();;
             $table->timestamps();
         });
     }
