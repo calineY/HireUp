@@ -5,6 +5,7 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class ReviewController extends Controller
 {
@@ -25,5 +26,21 @@ class ReviewController extends Controller
             'message' => 'Review added',
             'review' => $review
         ], 201);
+    }
+
+    public function getReviews(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'user_id'=>'required|numeric',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $user=User::find($request->user_id);
+        $reviews=$user->recievedReview()->get();
+        return response()->json([
+            'message' => 'Success',
+            'reviews' => $reviews
+        ], 200);
+
     }
 }

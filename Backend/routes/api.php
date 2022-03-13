@@ -26,5 +26,6 @@ Route::group([
     Route::post('/job', [JobController::class, 'addWorkProfile']);    
     Route::get('/getjob', [JobController::class, 'getWorkProfile']);   
     Route::post('/review', [ReviewController::class, 'addReview']);  
+    Route::get('/reviews', [ReviewController::class, 'getReviews']);  
 });
 
