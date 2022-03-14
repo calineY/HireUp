@@ -28,7 +28,8 @@ Route::group([
     Route::get('/getjob', [JobController::class, 'getWorkProfile']);   
     Route::post('/review', [ReviewController::class, 'addReview']);  
     Route::get('/reviews', [ReviewController::class, 'getReviews']);  
-    Route::post('/review', [ReviewController::class, 'deleteReview']);  
+    Route::post('/reviews', [ReviewController::class, 'deleteReview']);  
     Route::post('/favorite', [FavoriteController::class, 'addFavorite']);  
+    Route::post('/favorites', [FavoriteController::class, 'deleteFavorite']);  
 });
 

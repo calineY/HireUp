@@ -42,25 +42,25 @@ class FavoriteController extends Controller
     //     ], 200);
     // }
 
-    // public function deleteReview(Request $request) {
-    //     $validator = Validator::make($request->all(), [
-    //         'id'=>'required|numeric',
-    //     ]);
-    //     if($validator->fails()){
-    //         return response()->json($validator->errors()->toJson(), 400);
-    //     }
-    //     $review=Review::find($request->id);
-    //     if($review->from_user_id==Auth::user()->id){
-    //         $review->delete();
-    //         return response()->json([
-    //             'message' => 'Review deleted',
-    //             'review' => $review
-    //         ], 200);
-    //     }
+    public function deleteFavorite(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'id'=>'required|numeric',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $favorite=Favorite::find($request->id);
+        if($favorite->from_user_id==Auth::user()->id){
+            $favorite->delete();
+            return response()->json([
+                'message' => 'Removed from favorites',
+                'favorite' => $favorite
+            ], 200);
+        }
         
-    //     return response()->json([
-    //         'message' => 'Action not allowed',
-    //     ], 200);
-    // }
+        return response()->json([
+            'message' => 'Action not allowed',
+        ], 401);
+    }
 
 }
