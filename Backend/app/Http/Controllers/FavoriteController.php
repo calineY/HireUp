@@ -27,12 +27,6 @@ class FavoriteController extends Controller
     }
 
     public function getFavorites(Request $request) {
-        // $validator = Validator::make($request->all(), [
-        //     'user_id'=>'required|numeric',
-        // ]);
-        // if($validator->fails()){
-        //     return response()->json($validator->errors()->toJson(), 400);
-        // }
         $favorites= Favorite::join('users', 'users.id', '=', 'favorites.to_user_id')
         ->join('jobs', 'favorites.to_user_id', '=', 'jobs.user_id')
         ->where("favorites.from_user_id", "=", Auth::user()->id)

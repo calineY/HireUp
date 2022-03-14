@@ -31,7 +31,7 @@ class JobController extends Controller
         ], 201);
     }
 
-    public function getWorkProfile(Request $request) {
+    public function getProfile(Request $request) {
         $validator = Validator::make($request->all(), [
             'user_id'=>'required|numeric',
         ]);
@@ -42,8 +42,11 @@ class JobController extends Controller
         $job=$user->job()->get();
         return response()->json([
             'message' => 'Success',
+            'user'=>$user,
             'job' => $job
         ], 200);
 
     }
+
+
 }
