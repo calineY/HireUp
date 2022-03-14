@@ -26,21 +26,22 @@ class FavoriteController extends Controller
         ], 201);
     }
 
-    // public function getReviews(Request $request) {
-    //     $validator = Validator::make($request->all(), [
-    //         'user_id'=>'required|numeric',
-    //     ]);
-    //     if($validator->fails()){
-    //         return response()->json($validator->errors()->toJson(), 400);
-    //     }
-    //     $reviews= Review::join('users', 'users.id', '=', 'reviews.from_user_id')
-    //     ->where("reviews.to_user_id", "=", $request->user_id)
-    //     ->get(['users.name','users.picture_url','reviews.*']);
-    //     return response()->json([
-    //         'message' => 'Success',
-    //         'reviews' => $reviews
-    //     ], 200);
-    // }
+    public function getFavorites(Request $request) {
+        // $validator = Validator::make($request->all(), [
+        //     'user_id'=>'required|numeric',
+        // ]);
+        // if($validator->fails()){
+        //     return response()->json($validator->errors()->toJson(), 400);
+        // }
+        $favorites= Favorite::join('users', 'users.id', '=', 'favorites.to_user_id')
+        ->join('jobs', 'favorites.to_user_id', '=', 'jobs.user_id')
+        ->where("favorites.from_user_id", "=", Auth::user()->id)
+        ->get(['users.name','users.picture_url','jobs.*']);
+        return response()->json([
+            'message' => 'Success',
+            'favorites' => $favorites
+        ], 200);
+    }
 
     public function deleteFavorite(Request $request) {
         $validator = Validator::make($request->all(), [

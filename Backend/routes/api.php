@@ -31,5 +31,6 @@ Route::group([
     Route::post('/reviews', [ReviewController::class, 'deleteReview']);  
     Route::post('/favorite', [FavoriteController::class, 'addFavorite']);  
     Route::post('/favorites', [FavoriteController::class, 'deleteFavorite']);  
+    Route::get('/favorites', [FavoriteController::class, 'getFavorites']);  
 });
 
