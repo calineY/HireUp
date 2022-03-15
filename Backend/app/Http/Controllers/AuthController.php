@@ -100,4 +100,28 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+    public function editProfile(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|between:2,100',
+            'latitude'=>'required|numeric|between:-90,90',
+            'longitude'=>'required|numeric|between:-180,180',
+        ]);
+        if ($validator->fails()){
+            
+            return response()->json($validator->errors()->toJson(), 400);
+
+        }
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->latitude = $request->latitude;
+        $user->longitude = $request->longitude;
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'Profile updated',
+            'user' => $user
+        ], 202);
+    }
 }
