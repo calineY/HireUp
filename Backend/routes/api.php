@@ -29,5 +29,6 @@ Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
     Route::post('/favorite', [FavoriteController::class, 'addFavorite']);  
     Route::post('/favorites', [FavoriteController::class, 'deleteFavorite']);  
     Route::get('/favorites', [FavoriteController::class, 'getFavorites']);  
+    Route::post('/available', [JobController::class, 'changeAvailability']);  
 });
 

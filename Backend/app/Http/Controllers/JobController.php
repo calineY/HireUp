@@ -48,5 +48,29 @@ class JobController extends Controller
 
     }
 
+    public function changeAvailability(Request $request){
+        $validator = Validator::make($request->all(), [
+            'id'=>'required|numeric',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $job = Job::find($request->id);
+        if ($job->user_id == Auth::user()->id){
+            if ($job->available==1){
+                $job->update(['available' => 0]);
+            }else{
+                $job->update(['available' => 1]);
+            }
+            return response()->json([
+            'message'=> 'Updated availablity',
+            'job' => $job
+            ], 201);
+        }
+        return response()->json([                 
+            'message' => "Not updated" 
+        ], 401);        
+    } 
+
 
 }
