@@ -72,5 +72,31 @@ class JobController extends Controller
         ], 401);        
     } 
 
+    public function editJob(Request $request){
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|between:2,100',
+            'bio' => 'required|string',
+            'rate_per_hour' => 'required|numeric',
+            'category_id'=>'required|numeric',
+        ]);
+        if ($validator->fails()){
+            
+            return response()->json($validator->errors()->toJson(), 400);
+
+        }
+        $user = Auth::user();
+        $job=$user->job;
+        $job->title = $request->title;
+        $job->bio = $request->bio;
+        $job->rate_per_hour = $request->rate_per_hour;
+        $job->category_id = $request->category_id;
+
+        $job->save();
+
+        return response()->json([
+            'message' => 'Job updated',
+            'Job' => $job
+        ], 202);
+    }
 
 }
