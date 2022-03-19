@@ -14,20 +14,40 @@ export const globalStyles = StyleSheet.create({
     },
     container2:{
         position:'absolute',
-        paddingTop:100,
+        paddingTop:230,
     },
     inputcontainer:{
-		width:387,
-        height:60,
+		width:360,
+        height:50,
 		backgroundColor: "#FFF",
 		borderRadius: 30,
 		paddingHorizontal: 15,
-		paddingVertical: 20,
+		paddingVertical: 10,
+        elevation:2,
 	},
     label:{
         marginStart:10,
+        marginTop:10,
         marginBottom:5,
         fontWeight:'bold',
         color:'#5a5a5a'
-    }
+    },
+    buttonLarge:{
+        width:360,
+        height:50,
+		backgroundColor: "#33C47E",
+		borderRadius: 30,
+		paddingHorizontal: 15,
+        alignItems: 'center',
+        justifyContent:'center',
+        marginTop:70,
+        elevation:2,
+    },
+    buttonText:{
+        marginStart:10,
+        marginBottom:5,
+        fontWeight:'bold',
+        color:'#fff',
+        textTransform:'uppercase',
+    },
   });
