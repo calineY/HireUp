@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInput, View, Image } from 'react-native';
+import {TextInput, View, Image, Text } from 'react-native';
 import { globalStyles } from '../styles/global';
 import hireup from '../assets/hireup.png';
 import Input from '../components/input';
@@ -8,7 +8,12 @@ export default function Login(){
     return(
         <View style={globalStyles.container}>
             <Image style={globalStyles.img} source={hireup}/>
-            <Input/>
+            <View style={globalStyles.container2}>
+                <Text style={globalStyles.label}> Email:</Text>
+                <Input placeholder='Jhon@mail.com'/>
+                <Text style={globalStyles.label}>Password:</Text>
+                <Input placeholder='Your password' secureTextEntry={true}/>
+            </View>
         </View>
     )
 }
