@@ -4,8 +4,11 @@ export const globalStyles = StyleSheet.create({
     container: {
         display:'flex',
         flex:1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f1f1f1',
         alignItems: 'center',
         justifyContent:'center'
     },
+    img:{
+        top:-300,
+    }
   });
