@@ -2,7 +2,6 @@ import { StyleSheet} from 'react-native';
 
 export const globalStyles = StyleSheet.create({
     container: {
-        display:'flex',
         flex:1,
         backgroundColor: '#f1f1f1',
         alignItems: 'center',
@@ -15,6 +14,11 @@ export const globalStyles = StyleSheet.create({
     container2:{
         position:'absolute',
         paddingTop:230,
+    },
+    container3:{
+        position:'absolute',
+        top:400,
+        height:400,
     },
     inputcontainer:{
 		width:360,
@@ -40,7 +44,6 @@ export const globalStyles = StyleSheet.create({
 		paddingHorizontal: 15,
         alignItems: 'center',
         justifyContent:'center',
-        marginTop:70,
         elevation:2,
     },
     buttonText:{
@@ -50,4 +53,18 @@ export const globalStyles = StyleSheet.create({
         color:'#fff',
         textTransform:'uppercase',
     },
+    map:{
+        backgroundColor:'#fff',
+        width:360,
+        height:50,
+        borderRadius: 30,
+		paddingHorizontal: 15,
+        paddingVertical:100,
+        marginBottom:50,
+    },
+    loginSignup:{
+        marginStart:'auto',
+        marginEnd:'auto',
+        padding:10,
+    }
   });

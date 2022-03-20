@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInput, View, Image, Text } from 'react-native';
+import {View, Image, Text } from 'react-native';
 import { globalStyles } from '../styles/global';
 import hireup from '../assets/hireup.png';
 import Input from '../components/input';
