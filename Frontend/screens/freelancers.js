@@ -82,7 +82,9 @@ export default function Home(){
                             </Text>
                             <Text>{item.job}</Text>
                             <Fontisto name="star" size={22} color="#33C47E" />
-                            <FontAwesome name="dollar" size={24} color="orange" />
+                            <View style={{marginTop:3,marginStart:3}}>
+                                <FontAwesome name="dollar" size={24} color="orange" />
+                            </View>
                         </View>
                     <View style={{flex:0.2, marginTop:15}}>
                         <Text>{item.distance}</Text>
