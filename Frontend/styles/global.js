@@ -69,6 +69,19 @@ export const globalStyles = StyleSheet.create({
         color:'#33C47E',
     },
     margin:{
-        margin:20,
+        marginBottom:200,
+    },
+    screenContainer:{
+        backgroundColor: '#f1f1f1',
+        alignItems: 'center',
+    },
+    header:{
+        backgroundColor:'#33C47E',
+        padding:20,
+        elevation:5,
+    },
+    safeView:{
+        backgroundColor:'#f1f1f1',
+        flex:1,
     }
   });
