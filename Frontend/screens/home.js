@@ -3,6 +3,7 @@ import {Text, View } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Input from '../components/input';
+import { AntDesign } from '@expo/vector-icons'; 
 
 export default function Home(){
     return(

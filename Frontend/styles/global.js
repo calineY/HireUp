@@ -7,6 +7,9 @@ export const globalStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:'center',
     },
+    containerList: {
+        paddingBottom:20,
+    },
     img:{
         position:'relative',
         top:-300,
@@ -83,5 +86,26 @@ export const globalStyles = StyleSheet.create({
     safeView:{
         backgroundColor:'#f1f1f1',
         flex:1,
+    },
+    freelancer:{
+        backgroundColor:'#fff',
+        width:360,
+        height:50,
+        borderRadius: 30,
+		paddingHorizontal: 15,
+        paddingVertical:100,
+        marginTop:20,
+        elevation:2,
+    },
+    freelancer:{
+        backgroundColor:'#fff',
+        width:360,
+        borderRadius: 30,
+		padding: 20,
+        marginTop:12,
+        marginBottom:12,
+        alignSelf:'center',
+        flexDirection:'row',
+        elevation:2,
     }
   });
