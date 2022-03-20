@@ -66,5 +66,9 @@ export const globalStyles = StyleSheet.create({
         marginStart:'auto',
         marginEnd:'auto',
         padding:10,
+        color:'#33C47E',
+    },
+    margin:{
+        margin:20,
     }
   });

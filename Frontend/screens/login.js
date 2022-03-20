@@ -14,7 +14,9 @@ export default function Login(){
                 <Input placeholder='Jhon@mail.com'/>
                 <Text style={globalStyles.label}>Password</Text>
                 <Input placeholder='Your password' secureTextEntry={true}/>
+                <View style={globalStyles.margin}></View>
                 <Button text='Login'/>
+                <View><Text style={globalStyles.loginSignup}>Don't have an account? Sign Up</Text></View>
             </View>
         </View>
     )
