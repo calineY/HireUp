@@ -1,15 +1,18 @@
 import React from 'react';
-import {ScrollView, View, Image, Text } from 'react-native';
+import {ScrollView, View, Image, Text, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 import hireup from '../assets/hireup.png';
 import Input from '../components/input';
 import Button from '../components/buttonLarge'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function Signup(){
+export default function Signup({navigation}){
     return(
         <View style={globalStyles.container}>
+            
             <Image style={globalStyles.img} source={hireup}/>
-            <ScrollView style={globalStyles.container3}>
+            <View style={globalStyles.container3}>
+            <ScrollView >
                 <Text style={globalStyles.label}> Full Name</Text>
                 <Input placeholder='Jhon Doe'/>
                 <Text style={globalStyles.label}> Email</Text>
@@ -21,8 +24,12 @@ export default function Signup(){
                 <Text style={globalStyles.label}>Location</Text>
                 <View style={globalStyles.map}></View>
                 <Button text='SIGN UP'/>
+                <TouchableOpacity onPress={()=> navigation.navigate("Login")}>
                 <View><Text style={globalStyles.loginSignup}>Already have an account? Login</Text></View>
-            </ScrollView>
+         
+                </TouchableOpacity>
+                </ScrollView>
+            </View>
         </View>
     )
 }
