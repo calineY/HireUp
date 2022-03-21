@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Image, Text } from 'react-native';
+import {View, Image, Text,TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 import hireup from '../assets/hireup.png';
 import Input from '../components/input';
 import Button from '../components/buttonLarge'
 
-export default function Login(){
+export default function Login({navigation}){
     return(
         <View style={globalStyles.container}>
             <Image style={globalStyles.img} source={hireup}/>
@@ -15,8 +15,10 @@ export default function Login(){
                 <Text style={globalStyles.label}>Password</Text>
                 <Input placeholder='Your password' secureTextEntry={true}/>
                 <View style={globalStyles.margin}></View>
-                <Button text='Login'/>
+                <Button text='Login' onPress={()=> navigation.navigate("inside")}/>
+                <TouchableOpacity onPress={()=> navigation.navigate("Register")}>
                 <View><Text style={globalStyles.loginSignup}>Don't have an account? Sign Up</Text></View>
+                </TouchableOpacity>
             </View>
         </View>
     )

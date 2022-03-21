@@ -4,12 +4,12 @@ import { globalStyles } from '../styles/global';
 import hireup from '../assets/hireup.png';
 import Input from '../components/input';
 import Button from '../components/buttonLarge'
-import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 export default function Signup({navigation}){
     return(
         <View style={globalStyles.container}>
-            
+
             <Image style={globalStyles.img} source={hireup}/>
             <View style={globalStyles.container3}>
             <ScrollView >
