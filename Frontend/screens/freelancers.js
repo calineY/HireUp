@@ -9,7 +9,7 @@ import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
 
-export default function Home(){
+export default function Freelancers(){
     const [freelancers,setFreelancers]=useState([
         {
             id: 1,
