@@ -5,23 +5,22 @@ export const globalStyles = StyleSheet.create({
         flex:1,
         backgroundColor: '#f1f1f1',
         alignItems: 'center',
-        justifyContent:'center',
+        // justifyContent:'center',
     },
     containerList: {
         paddingBottom:20,
     },
     img:{
-        position:'relative',
-        top:-300,
+        top:-200,
     },
     container2:{
-        position:'absolute',
-        paddingTop:230,
+        top:-200  
     },
     container3:{
-        position:'absolute',
-        top:400,
-        height:400,
+        
+        top:-200,
+        height:500,
+        
     },
     inputcontainer:{
 		width:360,
@@ -72,7 +71,7 @@ export const globalStyles = StyleSheet.create({
         color:'#33C47E',
     },
     margin:{
-        marginBottom:200,
+        marginBottom:20,
     },
     screenContainer:{
         backgroundColor: '#f1f1f1',
