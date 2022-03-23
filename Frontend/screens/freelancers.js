@@ -1,4 +1,4 @@
-import { View, Text,FlatList } from 'react-native'
+import { View, Text,FlatList, TouchableOpacity  } from 'react-native'
 import React from 'react'
 import { globalStyles } from '../styles/global';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,7 +9,7 @@ import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
 
-export default function Freelancers(){
+export default function Freelancers({navigation}){
     const [freelancers,setFreelancers]=useState([
         {
             id: 1,
@@ -65,31 +65,33 @@ export default function Freelancers(){
                 key={(item) => item.id}
                 style={globalStyles.containerList}
                 renderItem={({ item }) => (
-                <View style={globalStyles.freelancer}>
-                    <View style={{ flex:0.3 , marginTop: 10 }}>
-                        <FontAwesome5
-                            style={{ marginRight: 10 }}
-                            name="user-circle"
-                            size={65}
-                            color="black"
-                        />
-                    </View>
-                    <View style={{ flex:0.7 , marginTop: 10 }}>
-                            <Text
-                            style={{ fontSize: 22, fontWeight: "bold", }}
-                            >
-                            {item.name}
-                            </Text>
-                            <Text>{item.job}</Text>
-                            <Fontisto name="star" size={22} color="#33C47E" />
-                            <View style={{marginTop:3,marginStart:3}}>
-                                <FontAwesome name="dollar" size={24} color="orange" />
-                            </View>
-                        </View>
-                    <View style={{flex:0.2, marginTop:15}}>
-                        <Text>{item.distance}</Text>
-                    </View>
-                </View>
+                <TouchableOpacity onPress={()=> navigation.navigate("FreelancerProfile")}>
+                  <View style={globalStyles.freelancer}>
+                      <View style={{ flex:0.3 , marginTop: 10 }}>
+                          <FontAwesome5
+                              style={{ marginRight: 10 }}
+                              name="user-circle"
+                              size={65}
+                              color="black"
+                          />
+                      </View>
+                      <View style={{ flex:0.7 , marginTop: 10 }}>
+                              <Text
+                              style={{ fontSize: 22, fontWeight: "bold", }}
+                              >
+                              {item.name}
+                              </Text>
+                              <Text>{item.job}</Text>
+                              <Fontisto name="star" size={22} color="#33C47E" />
+                              <View style={{marginTop:3,marginStart:3}}>
+                                  <FontAwesome name="dollar" size={24} color="orange" />
+                              </View>
+                          </View>
+                      <View style={{flex:0.2, marginTop:15}}>
+                          <Text>{item.distance}</Text>
+                      </View>
+                  </View>
+                </TouchableOpacity>
         )}
       />
       

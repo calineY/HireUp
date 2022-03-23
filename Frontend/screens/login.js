@@ -5,6 +5,7 @@ import hireup from '../assets/hireup.png';
 import Input from '../components/input';
 import Button from '../components/buttonLarge'
 
+
 export default function Login({navigation}){
     return(
         <View style={globalStyles.container}>
@@ -15,7 +16,7 @@ export default function Login({navigation}){
                 <Text style={globalStyles.label}>Password</Text>
                 <Input placeholder='Your password' secureTextEntry={true}/>
                 <View style={globalStyles.margin}></View>
-                <Button text='Login' onPress={()=> navigation.navigate("inside")}/>
+                <Button text='Login' onPress={()=> console.warn("log in")}/>
                 <TouchableOpacity onPress={()=> navigation.navigate("Register")}>
                 <View><Text style={globalStyles.loginSignup}>Don't have an account? Sign Up</Text></View>
                 </TouchableOpacity>
