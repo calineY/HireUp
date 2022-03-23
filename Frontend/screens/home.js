@@ -3,9 +3,9 @@ import {Text, View } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Input from '../components/input';
-import { AntDesign } from '@expo/vector-icons'; 
+import Button from '../components/buttonLarge'
 
-export default function Home(){
+export default function Home({navigation}){
     return(
         <SafeAreaView style={globalStyles.safeView}>
             <View style={globalStyles.header}>
@@ -14,6 +14,7 @@ export default function Home(){
             <View style={globalStyles.screenContainer}>
                 <Text style={globalStyles.label}>Choose your marketplace</Text>
             </View>
+            <Button text='Go to freelancers' onPress={()=> navigation.navigate("Freelancers")}/>
         </SafeAreaView> 
        
     )
