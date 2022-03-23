@@ -1,5 +1,5 @@
 
-import StackSwitcher from './Navigation/StackSwitcher';
+import StackSwitcher from './navigation/stackSwitcher';
 
 
 export default function App() {
