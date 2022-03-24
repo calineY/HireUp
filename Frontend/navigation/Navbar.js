@@ -1,6 +1,6 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Freelancers from '../screens/freelancers';
-import HomeStack from '../navigation/homeStack';
+import HomeStack from './homeStack';
 import Favorites from '../screens/favorites';
 import MyProfile from '../screens/myprofile';
 import MyReviews from '../screens/myreviews';
