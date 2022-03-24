@@ -14,7 +14,7 @@ const StackSwitcher = () => {
 
   return (
     <NavigationContainer>
-        {true?<LoginStack/>:<TabNavigation/>}
+        {false?<LoginStack/>:<TabNavigation/>}
      </NavigationContainer>
   )
 }
