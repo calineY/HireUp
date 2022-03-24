@@ -65,7 +65,7 @@ export default function Freelancers({navigation}){
                 key={(item) => item.id}
                 style={globalStyles.containerList}
                 renderItem={({ item }) => (
-                <TouchableOpacity onPress={()=> navigation.navigate("FreelancerProfile")}>
+                <TouchableOpacity onPress={()=> navigation.navigate("Freelancer Profile")}>
                   <View style={globalStyles.freelancer}>
                       <View style={{ flex:0.3 , marginTop: 10 }}>
                           <FontAwesome5
@@ -75,16 +75,20 @@ export default function Freelancers({navigation}){
                               color="black"
                           />
                       </View>
-                      <View style={{ flex:0.7 , marginTop: 10 }}>
+                      <View style={{ flex:0.7 }}>
                               <Text
                               style={{ fontSize: 22, fontWeight: "bold", }}
                               >
                               {item.name}
                               </Text>
                               <Text>{item.job}</Text>
-                              <Fontisto name="star" size={22} color="#33C47E" />
-                              <View style={{marginTop:3,marginStart:3}}>
+                              <View style={{flexDirection:"row"}}>
+                                <Fontisto name="star" size={22} color="#33C47E" />
+                                <Text style={{marginLeft:3}}>5/5</Text>
+                              </View>
+                              <View style={{marginTop:3,marginStart:3,flexDirection:"row"}}>
                                   <FontAwesome name="dollar" size={24} color="orange" />
+                                  <Text style={{marginLeft:3}}>20/hour</Text>
                               </View>
                           </View>
                       <View style={{flex:0.2, marginTop:15}}>

@@ -12,7 +12,7 @@ const HomeStack = () => {
     <HomeStack.Navigator screenOptions={{headerShown:true}}>
         <HomeStack.Screen name='Home' component={Home}/>
         <HomeStack.Screen name='Freelancers' component={Freelancers}/>
-        <HomeStack.Screen name='FreelancerProfile' component={FreelancerProfile}/>
+        <HomeStack.Screen name='Freelancer Profile' component={FreelancerProfile}/>
     </HomeStack.Navigator>
   )
 }
