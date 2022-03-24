@@ -12,7 +12,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function MyTabs() {
   return (
-    <Tab.Navigator initialRouteName='Home' backBehavior="order" activeColor="#fff" inactiveColor="rgba(255, 255, 255, 0.6)" barStyle={{backgroundColor:'#33C47E'}}>
+    <Tab.Navigator initialRouteName='Home' backBehavior="order" activeColor="#fff" inactiveColor="rgba(255, 255, 255, 0.6)" barStyle={{backgroundColor:'#33C47E'}} >
       <Tab.Screen options={{tabBarLabel: "Home", tabBarIcon: ({ color }) => (
             <AntDesign name="home" size={24} color={color} />)}}  name="HomeStack" component={HomeStack}/>
       <Tab.Screen options={{tabBarLabel: "Favorites", tabBarIcon: ({ color }) => (

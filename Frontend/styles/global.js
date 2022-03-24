@@ -9,6 +9,7 @@ export const globalStyles = StyleSheet.create({
     },
     containerList: {
         paddingBottom:20,
+        paddingHorizontal:10
     },
     img:{
         top:-200,
@@ -36,7 +37,8 @@ export const globalStyles = StyleSheet.create({
         marginTop:10,
         marginBottom:5,
         fontWeight:'bold',
-        color:'#5a5a5a'
+        color:'#5a5a5a',
+        fontSize:20
     },
     buttonLarge:{
         width:360,
