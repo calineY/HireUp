@@ -5,6 +5,7 @@ import hireup from '../assets/hireup.png';
 import Input from '../components/input';
 import Button from '../components/buttonLarge'
 import { useState } from 'react';
+import PhoneInput from "react-native-phone-number-input";
 
 
 import MapView, { Marker } from 'react-native-maps';
@@ -36,9 +37,13 @@ export default function Signup({navigation}){
                 <Input placeholder='Your password' secureTextEntry={true}/>
                 <Text style={globalStyles.label}>Confirm Password</Text>
                 <Input placeholder='Confirm password' secureTextEntry={true}/>
+
+                <Text style={globalStyles.label}>Phone Number</Text>
+                <View style={{alignItems:'center'}}>
+                  <PhoneInput />
+                </View>
                 <Text style={globalStyles.label}>Location</Text>
-                <View style={styles.container}>
-                                    
+                <View style={styles.container}>             
                 <MapView  style={styles.map} initialRegion={{
                      latitude: 33.890536626710244,
                      longitude: 35.489303601542964,
@@ -53,15 +58,15 @@ export default function Signup({navigation}){
                             console.log("Drag start", e.nativeEvent.coordinate);
                           }}
                         onDragEnd={(e) => {
-                            console.log("Drag end", e.nativeEvent.coordinate),
-                            setPin({
-                                latitude: e.nativeEvent.coordinate.latitude,
-                                longitude: e.nativeEvent.coordinate.longitude,
-                              });
-                              setRegion({
-                                latitude: e.nativeEvent.coordinate.latitude,
-                                longitude: e.nativeEvent.coordinate.longitude,
-                              });
+                          console.log("Drag end", e.nativeEvent.coordinate),
+                          setPin({
+                              latitude: e.nativeEvent.coordinate.latitude,
+                              longitude: e.nativeEvent.coordinate.longitude,
+                            });
+                            setRegion({
+                              latitude: e.nativeEvent.coordinate.latitude,
+                              longitude: e.nativeEvent.coordinate.longitude,
+                            });
                         }}
                         />
                 </MapView>
