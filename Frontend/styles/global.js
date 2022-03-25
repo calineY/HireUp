@@ -57,14 +57,14 @@ export const globalStyles = StyleSheet.create({
         color:'#fff',
         textTransform:'uppercase',
     },
-    map:{
+    bio:{
         backgroundColor:'#fff',
         width:360,
-        height:50,
         borderRadius: 30,
-		paddingHorizontal: 15,
-        paddingVertical:100,
-        marginBottom:50,
+        marginBottom:10,
+        alignSelf:'center',
+        padding:10,
+        textAlignVertical:'center',
     },
     loginSignup:{
         marginStart:'auto',
@@ -88,16 +88,6 @@ export const globalStyles = StyleSheet.create({
         backgroundColor:'#f1f1f1',
         flex:1,
     },
-    // freelancer:{
-    //     backgroundColor:'#fff',
-    //     width:360,
-    //     height:50,
-    //     borderRadius: 30,
-	// 	paddingHorizontal: 15,
-    //     paddingVertical:100,
-    //     marginTop:20,
-    //     elevation:2,
-    // },
     freelancer:{
         backgroundColor:'#fff',
         width:360,
@@ -108,5 +98,14 @@ export const globalStyles = StyleSheet.create({
         alignSelf:'center',
         flexDirection:'row',
         elevation:2,
+    },
+    buttonSmall:{
+        width:180,
+        height:40,
+		borderRadius: 30,
+        alignItems: 'center',
+        justifyContent:'center',
+        elevation:2,
+        margin:5,
     }
   });
