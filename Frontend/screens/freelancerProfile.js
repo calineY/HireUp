@@ -4,9 +4,58 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import SmallButton from '../components/button'
+import { globalStyles } from '../styles/global';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { useState } from 'react';
+
 
 
 const FreelancerProfile = () => {
+    const [freelancers,setFreelancers]=useState([
+        {
+            id: 1,
+            name: 'Charbel Daoud',
+            job:'Interior designer',
+            distance:'17km'
+          },
+          {
+            id: 2,
+            name: 'Karim Khalifeh',
+            job:'Graphic designer',
+            distance:'17km'
+          },
+          {
+            id: 3,
+            name: 'Joe Rizk',
+            job:'Interior designer',
+            distance:'17km'
+          },
+          {
+            id: 4,
+            name: 'Laurena Fayad',
+            job:'UI/UX',
+            distance:'17km'
+          },
+          {
+            id: 5,
+            name: 'Jane Doe',
+            job:'UI/UX',
+            distance:'17km'
+          },
+          {
+            id: 6,
+            name: 'Gaya Foulti',
+            job:'Graphic designer',
+            distance:'17km'
+          },
+          {
+            id: 7,
+            name: 'Julien Script',
+            job:'Interior designer',
+            distance:'17km'
+          },
+        ]);
   return (
       <View style={{alignContent:"center",flex:1, padding:30}}>
         <View style={{flexDirection:"row"}}>
@@ -36,6 +85,46 @@ const FreelancerProfile = () => {
                 <Text>12 km</Text>
             </View>
         </View>
+        <View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
+            <SmallButton text="Add to favorites" color="#7C9BC9"/>
+            <SmallButton text="Contact" color="#33C47E"/>
+        </View>
+        <Text style={{ fontSize: 19, fontWeight:'bold' }}>Bio</Text>
+        <Text style={globalStyles.bio}>Lorem ipsum dolor sit amet,  et dolore magna aliqua. Ut enim ad minim veniamlabore et dolore magna aliqua. Ut enim ad minim veniamlabore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
+        <Text style={{ fontSize: 19, fontWeight:'bold' }}>Reviews</Text>
+        
+        <FlatList
+                data={freelancers}
+                key={(item) => item.id}
+                style={{width:360}}
+                renderItem={({ item }) => (
+                <View>
+                  <View style={{backgroundColor:'#fff',
+        width:360,
+      
+        borderRadius: 30,
+        marginBottom:10,
+        alignSelf:'center',
+        padding:10,
+        textAlignVertical:'center',}}>
+                    <View style={{ flex:0.7 }}>
+                        <Text style={{ fontSize: 16, fontWeight: "bold", }}>{item.name}</Text>
+                          <View style={{flexDirection:"row"}}>
+                            <Fontisto name="star" size={22} color="#33C47E" />
+                            <Text style={{marginLeft:3}}>5/5</Text>
+                          </View>
+                          <View style={{marginTop:3,marginStart:3,flexDirection:"row"}}>
+                          <Text>Lorem ipsum dolor sit amet,  et dolore magna aliqua. Ut enim ad minim veniamlabore e
+                          </Text>
+                          </View>
+                    </View>
+                  </View>
+                </View>
+        )}
+      />
+
+       
+
  </View>
   )
 }
