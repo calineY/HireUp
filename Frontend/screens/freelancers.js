@@ -2,7 +2,6 @@ import { View, Text,FlatList, TouchableOpacity  } from 'react-native'
 import React from 'react'
 import { globalStyles } from '../styles/global';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Input from '../components/input';
 import { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { Fontisto } from '@expo/vector-icons'; 
@@ -57,9 +56,9 @@ export default function Freelancers({navigation}){
 
     return(
         <SafeAreaView style={globalStyles.safeView}>
-            <View style={globalStyles.header}>
+            {/* <View style={globalStyles.header}>
                 <Input placeholder='Search'/>
-            </View>
+            </View> */}
             <FlatList
                 data={freelancers}
                 key={(item) => item.id}
@@ -67,33 +66,29 @@ export default function Freelancers({navigation}){
                 renderItem={({ item }) => (
                 <TouchableOpacity onPress={()=> navigation.navigate("Freelancer Profile")}>
                   <View style={globalStyles.freelancer}>
-                      <View style={{ flex:0.3 , marginTop: 10 }}>
-                          <FontAwesome5
-                              style={{ marginRight: 10 }}
-                              name="user-circle"
-                              size={65}
-                              color="black"
-                          />
-                      </View>
-                      <View style={{ flex:0.7 }}>
-                              <Text
-                              style={{ fontSize: 22, fontWeight: "bold", }}
-                              >
-                              {item.name}
-                              </Text>
-                              <Text>{item.job}</Text>
-                              <View style={{flexDirection:"row"}}>
-                                <Fontisto name="star" size={22} color="#33C47E" />
-                                <Text style={{marginLeft:3}}>5/5</Text>
-                              </View>
-                              <View style={{marginTop:3,marginStart:3,flexDirection:"row"}}>
-                                  <FontAwesome name="dollar" size={24} color="orange" />
-                                  <Text style={{marginLeft:3}}>20/hour</Text>
-                              </View>
+                    <View style={{ flex:0.3 , marginTop: 10 }}>
+                        <FontAwesome5
+                          style={{ marginRight: 10 }}
+                          name="user-circle"
+                          size={65}
+                          color="black"
+                        />
+                    </View>
+                    <View style={{ flex:0.7 }}>
+                        <Text style={{ fontSize: 22, fontWeight: "bold", }}>{item.name}</Text>
+                          <Text>{item.job}</Text>
+                          <View style={{flexDirection:"row"}}>
+                            <Fontisto name="star" size={22} color="#33C47E" />
+                            <Text style={{marginLeft:3}}>5/5</Text>
                           </View>
-                      <View style={{flex:0.2, marginTop:15}}>
-                          <Text>{item.distance}</Text>
-                      </View>
+                          <View style={{marginTop:3,marginStart:3,flexDirection:"row"}}>
+                              <FontAwesome name="dollar" size={24} color="orange" />
+                              <Text style={{marginLeft:3}}>20/hour</Text>
+                          </View>
+                    </View>
+                    <View style={{flex:0.2, marginTop:15}}>
+                        <Text>{item.distance}</Text>
+                    </View>
                   </View>
                 </TouchableOpacity>
         )}
