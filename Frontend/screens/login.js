@@ -52,7 +52,7 @@ export default function Login({navigation}){
                 <View style={globalStyles.margin}></View>
                 <Button text='Login' onPress={loginFetch}/>
                 <TouchableOpacity onPress={()=> navigation.navigate("Register")}>
-                <View><Text style={globalStyles.loginSignup}>Don't have an account? Sign Up</Text></View>
+                    <Text style={globalStyles.loginSignup}>Don't have an account? Sign Up</Text>
                 </TouchableOpacity>
             </View>
         </View>

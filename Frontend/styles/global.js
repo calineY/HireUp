@@ -73,7 +73,7 @@ export const globalStyles = StyleSheet.create({
         color:'#33C47E',
     },
     margin:{
-        marginBottom:20,
+        height:60
     },
     screenContainer:{
         backgroundColor: '#f1f1f1',
