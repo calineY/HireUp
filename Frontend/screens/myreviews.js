@@ -1,10 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import Header from '../components/header'
+
 
 const MyReviews = () => {
   return (
     <View>
-      <Text>myreviews</Text>
+      <Header title='My reviews'/>
     </View>
   )
 }

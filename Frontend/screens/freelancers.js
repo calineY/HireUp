@@ -56,9 +56,6 @@ export default function Freelancers({navigation}){
 
     return(
         <SafeAreaView style={globalStyles.safeView}>
-            {/* <View style={globalStyles.header}>
-                <Input placeholder='Search'/>
-            </View> */}
             <FlatList
                 data={freelancers}
                 key={(item) => item.id}

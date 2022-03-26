@@ -34,10 +34,9 @@ export const globalStyles = StyleSheet.create({
 	},
     label:{
         marginStart:10,
-        marginTop:10,
         marginBottom:5,
         fontWeight:'bold',
-        color:'#5a5a5a',
+        color:'black',
         fontSize:20
     },
     buttonLarge:{
@@ -81,8 +80,8 @@ export const globalStyles = StyleSheet.create({
     },
     header:{
         backgroundColor:'#33C47E',
-        padding:20,
-        elevation:5,
+        padding:45,
+       
     },
     safeView:{
         backgroundColor:'#f1f1f1',
@@ -107,5 +106,12 @@ export const globalStyles = StyleSheet.create({
         justifyContent:'center',
         elevation:2,
         margin:5,
+    },
+    headerTitle:{
+        color:'rgba(255,255,255,0.99)',
+         fontSize:19.5,fontWeight:'bold',
+         position:'absolute',
+         paddingTop:48,
+         paddingStart:15
     }
   });
