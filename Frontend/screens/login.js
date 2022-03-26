@@ -28,7 +28,7 @@ export default function Login({navigation}){
       };
 
       const loginFetch = async () => {
-        const url = "http://192.168.1.9:8000/api/auth/login";
+        const url = "http://192.168.1.231:8000/api/auth/login";
     
         try {
           const response = await axios.post(url, data);

@@ -63,7 +63,7 @@ export const globalStyles = StyleSheet.create({
         borderRadius: 30,
         marginBottom:10,
         alignSelf:'center',
-        padding:10,
+        padding:15,
         textAlignVertical:'center',
     },
     loginSignup:{
