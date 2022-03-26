@@ -12,6 +12,9 @@ import { useState } from 'react';
 
 
 const FreelancerProfile = () => {
+    const redirectToWhatsapp = () =>{
+        Linking.openURL('whatsapp://send?text=Hello I found you on HireUp!&phone=+96171767010');
+    }
     const [freelancers,setFreelancers]=useState([
         {
             id: 1,
@@ -86,8 +89,8 @@ const FreelancerProfile = () => {
             </View>
         </View>
         <View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
-            <SmallButton text="Add to favorites" color="#7C9BC9" onPress={Linking.openURL('whatsapp://send?text=Hello I found you on HireUp!&phone=+96171767010')}/>
-            <SmallButton text="Contact" color="#33C47E"/>
+            <SmallButton text="Add to favorites" color="#7C9BC9"/>
+            <SmallButton text="Contact" color="#33C47E"  onPress={redirectToWhatsapp}/>
         </View>
         <Text style={{ fontSize: 19, fontWeight:'bold' }}>Bio</Text>
         <Text style={globalStyles.bio}>Lorem ipsum dolor sit amet,  et dolore magna aliqua. Ut enim ad minim veniamlabore et dolore magna aliqua. Ut enim ad minim veniamlabore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
