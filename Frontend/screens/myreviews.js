@@ -58,30 +58,24 @@ const MyReviews = () => {
                 key={(item) => item.id}
                 style={{width:360,alignSelf:'center',paddingTop:15}}
                 renderItem={({ item }) => (
-                <View>
                   <View style={{backgroundColor:'#fff',
-        width:360,
-        borderRadius: 30,
-        marginBottom:10,
-        alignSelf:'center',
-        padding:20,
-        textAlignVertical:'center',}}>
-            <View>
-                    <View style={{flexDirection:'row',marginBottom:3 }}>
-                        <Text style={{ fontSize: 16, fontWeight: "bold", flex:0.6}}>To {item.name}</Text>
-                          <View style={{flexDirection:"row", flex:0.4}}>
+                      width:360,
+                      borderRadius: 20,
+                      marginBottom:10,
+                      alignSelf:'center',
+                      padding:20,
+                      textAlignVertical:'center',}}>
+                    <View style={{flexDirection:'row',}}>
+                        <Text style={{ fontSize: 17, fontWeight: "bold", flex:1}}>To {item.name}</Text>
+                          <View><MaterialIcons name="delete-outline" size={36} color="red" /></View>
+                    </View>
+                    <View style={{flexDirection:"row"}}>
                             <Fontisto name="star" size={22} color="#33C47E" />
                             <Text style={{marginLeft:3}}>{item.rating}/5</Text>
-                          </View>
-                          <View><MaterialIcons name="delete-outline" size={36} color="red" /></View>
-                          </View>
-                          <View style={{marginTop:3,marginStart:3,flexDirection:"row"}}>
-                          <Text>{item.review}
-                          </Text>
-                          </View>
-                  </View>
+                    </View>
+                    <Text style={{paddingTop:10,fontSize:18}}>{item.review}</Text>
                 </View>
-                </View>
+                
         )}
       />
     </View>

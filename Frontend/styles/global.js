@@ -57,7 +57,7 @@ export const globalStyles = StyleSheet.create({
     bio:{
         backgroundColor:'#fff',
         width:360,
-        borderRadius: 30,
+        borderRadius: 20,
         marginBottom:10,
         alignSelf:'center',
         padding:15,
@@ -88,7 +88,7 @@ export const globalStyles = StyleSheet.create({
     freelancer:{
         backgroundColor:'#fff',
         width:360,
-        borderRadius: 30,
+        borderRadius: 20,
 		padding: 20,
         marginTop:12,
         marginBottom:12,

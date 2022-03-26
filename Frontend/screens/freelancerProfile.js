@@ -96,23 +96,20 @@ const FreelancerProfile = () => {
             </View>
         </View>
         {freelancers.map((item)=>
-        <View key={item.id}>
-        <View style={{backgroundColor:'#fff',width:360,borderRadius: 30,marginBottom:10,alignSelf:'center',padding:15,textAlignVertical:'center',}}>
-            <View style={{flexDirection:'row',marginBottom:3 }}>
-                <Text style={{ fontSize: 16, fontWeight: "bold", flex:0.8 }}>{item.name}</Text>
-                <View style={{flexDirection:"row", flex:0.2}}>
-                    <Fontisto name="star" size={22} color="#33C47E" />
-                    <Text style={{marginLeft:3}}>{item.rating}/5</Text>
+            <View key={item.id}>
+            <View style={{backgroundColor:'#fff',width:360,borderRadius: 20,marginBottom:10,alignSelf:'center',padding:15,textAlignVertical:'center',}}>
+                <View style={{flexDirection:'row',marginBottom:3 }}>
+                    <Text style={{ fontSize: 16, fontWeight: "bold", flex:0.8 }}>{item.name}</Text>
+                    <View style={{flexDirection:"row", flex:0.2}}>
+                        <Fontisto name="star" size={22} color="#33C47E" />
+                        <Text style={{marginLeft:3}}>{item.rating}/5</Text>
+                    </View>
+                </View>
+                <View style={{marginTop:3,marginStart:3,flexDirection:"row"}}>
+                    <Text>{item.review}</Text>
                 </View>
             </View>
-            <View style={{marginTop:3,marginStart:3,flexDirection:"row"}}>
-                <Text>{item.review}</Text>
-            </View>
-        </View>
-      </View>
-        )}
-       
-
+            </View>)}
  </View>
  </ScrollView>
   )
