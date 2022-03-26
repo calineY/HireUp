@@ -50,8 +50,6 @@ export const globalStyles = StyleSheet.create({
         elevation:2,
     },
     buttonText:{
-        marginStart:10,
-        marginBottom:5,
         fontWeight:'bold',
         color:'#fff',
         textTransform:'uppercase',

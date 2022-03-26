@@ -7,6 +7,7 @@ import MyReviews from '../screens/myreviews';
 import { AntDesign } from '@expo/vector-icons'; 
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons'; 
+import FavoritesStack from './favoritesStack'
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -16,7 +17,7 @@ export default function MyTabs() {
       <Tab.Screen options={{tabBarLabel: "Home", tabBarIcon: ({ color }) => ( 
             <AntDesign name="home" size={24} color={color} />)}}  name="HomeStack" component={HomeStack} />
       <Tab.Screen options={{ tabBarLabel: "Favorites", tabBarIcon: ({ color }) => (
-            <MaterialIcons name="favorite-border" size={24} color={color} />)}} name="Favorites" component={Favorites} />
+            <MaterialIcons name="favorite-border" size={24} color={color} />)}} name="FavoritesStack" component={FavoritesStack} />
       <Tab.Screen options={{tabBarLabel: "My Reviews", tabBarIcon: ({ color }) => (
             <MaterialIcons name="rate-review" size={24} color={color} />)}} name="My Reviews" component={MyReviews} />
       <Tab.Screen options={{tabBarLabel: "My Profile", tabBarIcon: ({ color }) => (
