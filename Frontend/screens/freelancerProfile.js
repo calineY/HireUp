@@ -6,8 +6,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import SmallButton from '../components/button'
 import { globalStyles } from '../styles/global';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useState } from 'react';
+
 
 
 
@@ -53,6 +54,7 @@ const FreelancerProfile = () => {
 
         ]);
   return (
+      <ScrollView>
       <View style={{alignContent:"center",flex:1, padding:30}}>
         <View style={{flexDirection:"row"}}>
             <View style={{flex:0.4}}>
@@ -87,43 +89,32 @@ const FreelancerProfile = () => {
         </View>
         <Text style={{ fontSize: 19, fontWeight:'bold' }}>Bio</Text>
         <Text style={globalStyles.bio}>Lorem ipsum dolor sit amet,  et dolore magna aliqua. Ut enim ad minim veniamlabore et dolore magna aliqua. Ut enim ad minim veniamlabore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
-        <Text style={{ fontSize: 19, fontWeight:'bold' }}>Reviews</Text>
-        
-        <FlatList
-                data={freelancers}
-                key={(item) => item.id}
-                style={{width:360}}
-                renderItem={({ item }) => (
-                <View>
-                  <View style={{backgroundColor:'#fff',
-        width:360,
-        borderRadius: 30,
-        marginBottom:10,
-        alignSelf:'center',
-        padding:15,
-        textAlignVertical:'center',}}>
-            <View>
-                    <View style={{flexDirection:'row',marginBottom:3 }}>
-                        <Text style={{ fontSize: 16, fontWeight: "bold", flex:0.8 }}>{item.name}</Text>
-                          <View style={{flexDirection:"row", flex:0.2}}>
-                            <Fontisto name="star" size={22} color="#33C47E" />
-                            <Text style={{marginLeft:3}}>{item.rating}/5</Text>
-                          </View>
-                          </View>
-                          <View style={{marginTop:3,marginStart:3,flexDirection:"row"}}>
-                          <Text>{item.review}
-                          </Text>
-                          </View>
-                    
-                  </View>
+        <View style={{flexDirection:'row'}}>
+            <Text style={{ fontSize: 19, fontWeight:'bold',flex:1,paddingTop:13}}>Reviews</Text>
+            <View style={{paddingBottom:10,marginRight:-8}}>
+                <SmallButton color="#33C47E" text="Add review" onPress={console.log("hi")}/>
+            </View>
+        </View>
+        {freelancers.map((item)=>
+        <View key={item.id}>
+        <View style={{backgroundColor:'#fff',width:360,borderRadius: 30,marginBottom:10,alignSelf:'center',padding:15,textAlignVertical:'center',}}>
+            <View style={{flexDirection:'row',marginBottom:3 }}>
+                <Text style={{ fontSize: 16, fontWeight: "bold", flex:0.8 }}>{item.name}</Text>
+                <View style={{flexDirection:"row", flex:0.2}}>
+                    <Fontisto name="star" size={22} color="#33C47E" />
+                    <Text style={{marginLeft:3}}>{item.rating}/5</Text>
                 </View>
-                </View>
+            </View>
+            <View style={{marginTop:3,marginStart:3,flexDirection:"row"}}>
+                <Text>{item.review}</Text>
+            </View>
+        </View>
+      </View>
         )}
-      />
-
        
 
  </View>
+ </ScrollView>
   )
 }
 
