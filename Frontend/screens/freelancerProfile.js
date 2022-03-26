@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text,Linking } from 'react-native'
 import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons'; 
@@ -86,7 +86,7 @@ const FreelancerProfile = () => {
             </View>
         </View>
         <View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
-            <SmallButton text="Add to favorites" color="#7C9BC9"/>
+            <SmallButton text="Add to favorites" color="#7C9BC9" onPress={Linking.openURL('whatsapp://send?text=Hello I found you on HireUp!&phone=+96171767010')}/>
             <SmallButton text="Contact" color="#33C47E"/>
         </View>
         <Text style={{ fontSize: 19, fontWeight:'bold' }}>Bio</Text>
