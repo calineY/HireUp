@@ -1,4 +1,4 @@
-import { View, Text,Linking } from 'react-native'
+import { View, Text,Linking,StyleSheet } from 'react-native'
 import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons'; 
@@ -8,6 +8,8 @@ import SmallButton from '../components/button'
 import { globalStyles } from '../styles/global';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useState } from 'react';
+import { BottomSheet } from 'react-native-btr';
+
 
 
 
@@ -16,6 +18,12 @@ const FreelancerProfile = () => {
     const redirectToWhatsapp = () =>{
         Linking.openURL('whatsapp://send?text=Hello I found you on HireUp!&phone=+96171767010');
     }
+    const [visible, setVisible] = useState(false);
+
+  const toggleBottomNavigationView = () => {
+    //Toggling the visibility state of the bottom sheet
+    setVisible(!visible);
+  };
     const [freelancers,setFreelancers]=useState([
         {
             
@@ -92,7 +100,7 @@ const FreelancerProfile = () => {
         <View style={{flexDirection:'row'}}>
             <Text style={{ fontSize: 19, fontWeight:'bold',flex:1,paddingTop:13}}>Reviews</Text>
             <View style={{paddingBottom:10,marginRight:-8}}>
-                <SmallButton color="#33C47E" text="Add review" onPress={console.log("hi")}/>
+                <SmallButton color="#33C47E" text="Add review" onPress={toggleBottomNavigationView}/>
             </View>
         </View>
         {freelancers.map((item)=>
@@ -111,8 +119,33 @@ const FreelancerProfile = () => {
             </View>
             </View>)}
  </View>
+ <BottomSheet
+          visible={visible}
+          //setting the visibility state of the bottom shee
+          onBackButtonPress={toggleBottomNavigationView}
+          //Toggling the visibility state on the click of the back botton
+          onBackdropPress={toggleBottomNavigationView}
+          //Toggling the visibility state on the clicking out side of the sheet
+        >
+            <View style={styles.bottomNavigationView}>
+                <Text style={globalStyles.modalTitle}>Add review</Text>
+            </View>
+        </BottomSheet>
  </ScrollView>
+
   )
 }
 
 export default FreelancerProfile
+
+const styles = StyleSheet.create({
+    bottomNavigationView: {
+      backgroundColor: '#fff',
+      width: '100%',
+      height: 350,
+      padding:10,
+      borderTopEndRadius:20,
+      borderTopStartRadius:20
+    },
+  });
+  

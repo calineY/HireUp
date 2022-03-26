@@ -111,5 +111,10 @@ export const globalStyles = StyleSheet.create({
          position:'absolute',
          paddingTop:48,
          paddingStart:15
+    },
+    modalTitle:{
+       fontSize:17,
+       fontWeight:'bold',
+       padding:10,
     }
   });
