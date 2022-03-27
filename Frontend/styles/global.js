@@ -5,7 +5,6 @@ export const globalStyles = StyleSheet.create({
         flex:1,
         backgroundColor: '#f1f1f1',
         alignItems: 'center',
-        // justifyContent:'center',
     },
     containerList: {
         paddingBottom:20,
@@ -26,7 +25,6 @@ export const globalStyles = StyleSheet.create({
     inputcontainer:{
 		width:360,
         height:50,
-		backgroundColor: "#FFF",
 		borderRadius: 30,
 		paddingHorizontal: 15,
 		paddingVertical: 10,
@@ -116,5 +114,11 @@ export const globalStyles = StyleSheet.create({
        fontSize:17,
        fontWeight:'bold',
        padding:10,
-    }
+    },
+    modalSubTitle:{
+        fontSize:14,
+        fontWeight:'bold',
+        padding:10,
+        color:'#5a5a5a'
+     }
   });
