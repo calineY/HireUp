@@ -85,7 +85,7 @@ const MyProfile = () => {
             </View>
             <View style={{ flex:0.6 }}>
                 <Text style={{ fontSize: 28, fontWeight: "bold" }}>
-                    Jhon Doe
+                    John Doe
                 </Text>
                 <Text style={{ fontSize: 22 }}>
                     Interior designer
