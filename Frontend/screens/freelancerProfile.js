@@ -1,4 +1,4 @@
-import { View, Text,Linking,StyleSheet } from 'react-native'
+import { View, Text,Linking,StyleSheet, Easing  } from 'react-native'
 import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons'; 
@@ -9,12 +9,19 @@ import { globalStyles } from '../styles/global';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useState } from 'react';
 import { BottomSheet } from 'react-native-btr';
+import Rating from 'react-native-rating';
+import Input from '../components/input';
+
 
 
 
 
 
 const FreelancerProfile = () => {
+    const images = {
+        starFilled: require('../assets/star_filled.png'),
+        starUnfilled: require('../assets/star_unfilled.png')
+      }
     const redirectToWhatsapp = () =>{
         Linking.openURL('whatsapp://send?text=Hello I found you on HireUp!&phone=+96171767010');
     }
@@ -129,6 +136,27 @@ const FreelancerProfile = () => {
         >
             <View style={styles.bottomNavigationView}>
                 <Text style={globalStyles.modalTitle}>Add review</Text>
+                <Text style={globalStyles.modalSubTitle}>Rate</Text>
+                <Rating
+    onChange={rating => console.log(rating)}
+    selectedStar={images.starFilled}
+    unselectedStar={images.starUnfilled}
+    config={{
+      easing: Easing.inOut(Easing.ease),
+      duration: 350
+    }}
+    stagger={80}
+    maxScale={1.4}
+    starStyle={{
+      width: 40,
+      height: 40
+    }}
+  />
+  <Text style={globalStyles.modalSubTitle}>Review</Text>
+  <Input color='#f1f1f1' placeholder='Review'/>
+  <View style={{alignSelf:'center',paddingVertical:30}}>
+    <SmallButton color="#33C47E" text="Add review"/>
+  </View>
             </View>
         </BottomSheet>
  </ScrollView>
@@ -143,7 +171,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       width: '100%',
       height: 350,
-      padding:10,
+      padding:20,
       borderTopEndRadius:20,
       borderTopStartRadius:20
     },
