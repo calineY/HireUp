@@ -38,8 +38,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/profile', [AuthController::class, 'editProfile']); 
         Route::post('/editjob', [JobController::class, 'editJob']);  
         Route::post('/getfreelancers', [JobController::class, 'getFreelancers']);  
-
-
+        Route::get('/getcategories', [JobController::class, 'getCategories']);  
     });
 });
 
