@@ -18,7 +18,33 @@ class CategorySeeder extends Seeder
             'name' => 'Design',
             'picture_url' => 'design.jpg'
         ],[
-        'name' => 'user',  
+            'name' => 'Technology',  
+            'picture_url' => 'technology.jpg'
+        ],[
+            'name' => 'Handyperson',  
+            'picture_url' => 'handyperson.jfif'
+        ]
+        ,[
+            'name' => 'Beauty',  
+            'picture_url' => 'beauty.jpg'
+        ],[
+            'name' => 'Education',  
+            'picture_url' => 'education.jpg'
+        ],[
+            'name' => 'Babysitting',  
+            'picture_url' => 'babysitting.jpg'
+        ],[
+            'name' => 'Marketing',  
+            'picture_url' => 'marketing.jpg'
+        ],[
+            'name' => 'Errands',  
+            'picture_url' => 'errands.png'
+        ],[
+            'name' => 'Engineering',  
+            'picture_url' => 'engineering.jpg'
+        ],[
+            'name' => 'Others',  
+            'picture_url' => 'others.jpg'
         ]
     ]);
     }
