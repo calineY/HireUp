@@ -99,4 +99,21 @@ class JobController extends Controller
         ], 202);
     }
 
+    public function getFreelancers(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'category_id'=>'required|numeric',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $freelancers=Job::join('users', 'users.id', '=', 'jobs.user_id')
+        ->where("jobs.category_id", "=", $request->category_id)
+        ->get(['users.name','users.picture_url','users.latitude','users.longitude','jobs.*']);
+        return response()->json([
+            'message' => 'Success',
+            'freelancers'=>$freelancers,
+        ], 200);
+
+    }
+
 }
