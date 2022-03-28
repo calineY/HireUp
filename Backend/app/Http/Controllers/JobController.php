@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\User;
+use App\Models\Category;
 use Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -115,5 +116,14 @@ class JobController extends Controller
         ], 200);
 
     }
+
+    public function getCategories() {
+        $categories=Category::all();
+        return response()->json([
+            'categories' => $categories
+        ], 200);
+
+    }
+
 
 }
