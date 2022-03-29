@@ -31,11 +31,11 @@ export const globalStyles = StyleSheet.create({
         elevation:2,
 	},
     label:{
-        marginStart:10,
-        marginBottom:5,
+        marginTop:10,
         fontWeight:'bold',
         color:'black',
-        fontSize:20
+        fontSize:20,
+        marginBottom:20,
     },
     buttonLarge:{
         width:360,

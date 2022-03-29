@@ -35,7 +35,7 @@ export default function Login({navigation}){
           const dataFetched = await response.data;
           console.warn(dataFetched);
         } catch (error) {
-          console.warn("error");
+          console.warn(error);
         }
       };
 
