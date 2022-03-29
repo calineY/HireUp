@@ -7,7 +7,6 @@ import Button from '../components/buttonLarge'
 import {useState} from 'react';
 import axios from 'axios';
 import { userContext } from '../userContext';
-import { TextInput } from 'react-native-paper';
 
 
 export default function Login({navigation}){
