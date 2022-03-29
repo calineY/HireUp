@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone_number');
-            $table->string('picture_url')->default('user.png');
+            $table->string('picture_url')->default('default-avatar.png');
             $table->decimal('latitude',10,8);
             $table->decimal('longitude',10,8);
             $table->integer('user_type_id')->default(2);
