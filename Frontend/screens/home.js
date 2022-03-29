@@ -1,58 +1,57 @@
 import React from 'react';
 import {Text, View, Image,ImageBackground , TouchableOpacity,FlatList} from 'react-native';
 import { globalStyles } from '../styles/global';
+import {homeStyles} from '../styles/homeStyles'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Input from '../components/input';
-import Button from '../components/buttonLarge'
-import design from '../assets/design.jpg'
-import technology from '../assets/technology.jpg'
-import education from '../assets/education.jpg'
 import { LinearGradient } from 'expo-linear-gradient';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 
 
 
 export default function Home({navigation}){
-    const [categories,setCategories]=useState([
-        {
-            id: 1,
-            name: 'Design',
-            image:design
-          },
-          {
-            id: 2,
-            name: 'Technology',
-            image:technology
-          },
-          {
-            id: 3,
-            name: 'Education',
-            image:education
-          },
-        ]);
+    const token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTIuMTY4LjEuMjMxOjgwMDBcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2NDg1MDY1NjYsImV4cCI6MTY0OTExMTM2NiwibmJmIjoxNjQ4NTA2NTY2LCJqdGkiOiJiSlluZXJZd0VJM3RFczF5Iiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.cvKYw08i_Rpzmb9dHwNqDFdUDUBG1rPT9mF_VltZy40";
+    useEffect(() => {
+        getCategories();
+      }, []);
+    const getCategories = async () => {
+        const url = "http://192.168.1.231:8000/api/user/getcategories";
+        try {
+          const response = await axios.get(url, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const dataFetched =response.data;
+            setCategories(dataFetched);
+            // console.warn(categories.categories)
+        } catch (error) {
+          console.warn(error);
+        }
+      };
+      
+    const [categories,setCategories]=useState();
+     
     return(
-        <SafeAreaView style={globalStyles.safeView}>
+        <View style={globalStyles.safeView}>
             <View style={globalStyles.screenContainer}>
                 <Text style={globalStyles.label}>Choose your marketplace</Text>
             </View>
-            <View style={{marginTop: 20}}/>
             <FlatList
-                data={categories}
+                data={categories && categories.categories}
                 key={(item) => item.id}
                 numColumns={2}
                 style={globalStyles.containerList}
                 renderItem={({ item }) => (
-                <TouchableOpacity style={{flex:1, alignItems:'flex-start',marginBottom:20}} onPress={()=> navigation.navigate("Freelancers")}>
-                    <View  style={{marginHorizontal:15,justifyContent: 'flex-end', alignItems: 'center'}}>
-                        <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']} style={{borderRadius:20}}>
-                            <Image style={{width:170,height:170,borderRadius:20, zIndex:-1}} source={item.image}/>
+                <TouchableOpacity style={homeStyles.touchableOpacity} onPress={()=> navigation.navigate("Freelancers")}>
+                    <View style={homeStyles.view}>
+                        <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']} style={homeStyles.linearGradient}>
+                            <Image style={homeStyles.image} source={{uri:`http://192.168.1.231:8000/${item.picture_url}`}}/>
                         </LinearGradient>
-                        <Text style={{position:'absolute', fontSize:18, color:'white',paddingBottom:10}}>{item.name}</Text>
+                        <Text style={homeStyles.text}>{item.name}</Text>
                     </View>
                 </TouchableOpacity>
             )}
             />
-        </SafeAreaView> 
+        </View> 
        
        )
     }
