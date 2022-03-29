@@ -22,7 +22,6 @@ export default function Home({navigation}){
           });
           const dataFetched =response.data;
             setCategories(dataFetched);
-            // console.warn(categories.categories)
         } catch (error) {
           console.warn(error);
         }
@@ -41,7 +40,7 @@ export default function Home({navigation}){
                 numColumns={2}
                 style={globalStyles.containerList}
                 renderItem={({ item }) => (
-                <TouchableOpacity style={homeStyles.touchableOpacity} onPress={()=> navigation.navigate("Freelancers")}>
+                <TouchableOpacity style={homeStyles.touchableOpacity} onPress={()=> navigation.navigate("Freelancers",item)}>
                     <View style={homeStyles.view}>
                         <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']} style={homeStyles.linearGradient}>
                             <Image style={homeStyles.image} source={{uri:`http://192.168.1.231:8000/${item.picture_url}`}}/>
