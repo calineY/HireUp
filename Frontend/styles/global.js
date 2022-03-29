@@ -37,6 +37,13 @@ export const globalStyles = StyleSheet.create({
         fontSize:20,
         marginBottom:20,
     },
+    inputLabel:{
+        marginTop:10,
+        fontWeight:'bold',
+        color:'black',
+        fontSize:20,
+        
+    },
     buttonLarge:{
         width:360,
         height:50,
@@ -93,6 +100,7 @@ export const globalStyles = StyleSheet.create({
         alignSelf:'center',
         flexDirection:'row',
         elevation:2,
+        alignItems:'center'
     },
     buttonSmall:{
         width:180,
