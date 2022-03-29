@@ -62,11 +62,11 @@ export default function Signup({navigation}){
   };
 
   const registerFetch = async () => {
-    const url = "http://192.168.1.9:8000/api/auth/register";
+    const url = "http://192.168.1.231:8000/api/auth/register";
 
     try {
       const response = await axios.post(url, data);
-      const dataFetched = await response.data;
+      const dataFetched =response.data;
       console.warn(dataFetched);
     } catch (error) {
       console.warn(error);
