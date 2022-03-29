@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Text, View, Image,ImageBackground , TouchableOpacity,FlatList} from 'react-native';
 import { globalStyles } from '../styles/global';
 import {homeStyles} from '../styles/homeStyles'
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import { userContext } from '../userContext';
+
 
 
 
 export default function Home({navigation}){
-    const token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTIuMTY4LjEuMjMxOjgwMDBcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2NDg1MDY1NjYsImV4cCI6MTY0OTExMTM2NiwibmJmIjoxNjQ4NTA2NTY2LCJqdGkiOiJiSlluZXJZd0VJM3RFczF5Iiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.cvKYw08i_Rpzmb9dHwNqDFdUDUBG1rPT9mF_VltZy40";
+    const { authUser, setAuthUser } = useContext(userContext)
+    const token=authUser.access_token;
     useEffect(() => {
         getCategories();
       }, []);
