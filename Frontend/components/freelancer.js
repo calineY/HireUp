@@ -3,7 +3,7 @@ import { View, Text,FlatList, TouchableOpacity,Image  } from 'react-native'
 import { globalStyles } from '../styles/global';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { userContext } from '../userContext';
+import { userContext } from '../context/userContext';
 import fetchURL from '../fetchURL';
 
 
