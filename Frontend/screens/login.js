@@ -6,7 +6,7 @@ import Input from '../components/input';
 import Button from '../components/buttonLarge'
 import {useState} from 'react';
 import axios from 'axios';
-import { userContext } from '../userContext';
+import { userContext } from '../context/userContext';
 import fetchURL from '../fetchURL';
 
 

@@ -30,6 +30,14 @@ export const globalStyles = StyleSheet.create({
 		paddingVertical: 10,
         elevation:2,
 	},
+    largeinputcontainer:{
+		width:360,
+        height:100,
+		borderRadius: 30,
+		paddingHorizontal: 15,
+		paddingVertical: 10,
+        elevation:2,
+	},
     label:{
         marginTop:10,
         fontWeight:'bold',

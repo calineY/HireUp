@@ -78,32 +78,26 @@ export default function Signup({navigation}){
       latitude: 33.89020967953036,
       longitude: 35.76620947569609,
       });
-      // const [region, setRegion] = useState({
-      //   latitude: 33.890536626710244,
-      //   longitude: 35.489303601542964,
-      //   latitudeDelta: 0.0922,
-      //   longitudeDelta: 0.0421,
-      // });
     return(
         <View style={globalStyles.container}>
 
             <Image style={globalStyles.img} source={hireup}/>
             <View style={globalStyles.container3}>
             <ScrollView >
-                <Text style={globalStyles.label}> Full Name</Text>
+                <Text style={globalStyles.inputLabel}> Full Name</Text>
                 <Input placeholder='Jhon Doe' value={data.name} setValue={handleName}/>
-                <Text style={globalStyles.label}> Email</Text>
+                <Text style={globalStyles.inputLabel}> Email</Text>
                 <Input placeholder='Jhon@mail.com' value={data.email} setValue={handleEmail}/>
-                <Text style={globalStyles.label}>Password</Text>
+                <Text style={globalStyles.inputLabel}>Password</Text>
                 <Input placeholder='Your password' secureTextEntry={true} value={data.password} setValue={handlePassword}/>
-                <Text style={globalStyles.label}>Confirm Password</Text>
+                <Text style={globalStyles.inputLabel}>Confirm Password</Text>
                 <Input placeholder='Confirm password' secureTextEntry={true} value={data.password_confirmation} setValue={handlePasswordConfirmation}/>
 
-                <Text style={globalStyles.label}>Phone Number</Text>
+                <Text style={globalStyles.inputLabel}>Phone Number</Text>
                 <View style={{alignItems:'center'}}>
                   <PhoneInput defaultCode='LB' onChangeFormattedText={(text) => {handlePhoneNumber(text); console.log(data.phone_number)}}/>
                 </View>
-                <Text style={globalStyles.label}>Location</Text>
+                <Text style={globalStyles.inputLabel}>Location</Text>
                 <View style={styles.container}>             
                 <MapView  style={styles.map} initialRegion={{
                      latitude: 33.890536626710244,
@@ -123,12 +117,6 @@ export default function Signup({navigation}){
                             });
                           handleLocation( e.nativeEvent.coordinate.latitude,
                             e.nativeEvent.coordinate.longitude);
-                            // setRegion({
-                            //   latitude: e.nativeEvent.coordinate.latitude,
-                            //   longitude: e.nativeEvent.coordinate.longitude,
-                            //   latitudeDelta: 0.0922,
-                            //   longitudeDelta: 0.0421,
-                            // });
                         }}
                         />
                 </MapView>

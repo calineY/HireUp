@@ -5,14 +5,17 @@ import {homeStyles} from '../styles/homeStyles'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-import { userContext } from '../userContext';
+import { userContext } from '../context/userContext';
 import fetchURL from '../fetchURL';
+import { categoriesContext } from '../context/categoriesContext';
 
 
 
 
 export default function Home({navigation}){
-    const { authUser, setAuthUser } = useContext(userContext)
+    const { authUser, setAuthUser } = useContext(userContext);
+    const { categoriesArray, setCategoriesArray } = useContext(categoriesContext);
+
     const token=authUser.access_token;
     useEffect(() => {
         getCategories();
@@ -24,7 +27,8 @@ export default function Home({navigation}){
             headers: { Authorization: `Bearer ${token}` },
           });
           const dataFetched =response.data;
-            setCategories(dataFetched);
+          setCategoriesArray(dataFetched);
+          setCategories(dataFetched);
         } catch (error) {
           console.warn(error);
         }
