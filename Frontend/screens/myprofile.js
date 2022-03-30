@@ -10,17 +10,18 @@ import { useState,useEffect } from 'react';
 import { BottomSheet } from 'react-native-btr';
 import Header from '../components/header'
 import { useContext } from 'react';
-import { userContext } from '../userContext';
+import { userContext } from '../context/userContext';
 import axios from 'axios';
 import { myprofileStyles } from '../styles/myprofileStyles';
 import Review from '../components/review';
 import fetchURL from '../fetchURL';
-
-
-
+import Dropdown from '../components/dropdown';
+import Input from '../components/input';
+import LargeInput from '../components/largeInput';
 
 const MyProfile = () => {
   const { authUser, setAuthUser } = useContext(userContext);
+
   const [visible, setVisible] = useState(false);
   const token=authUser.access_token;
   const toggleBottomNavigationView = () => {
@@ -47,8 +48,14 @@ function calculateRating(reviews){
           headers: { Authorization: `Bearer ${token}` },
         });
         const dataFetched =response.data;
-        setWorkProfile(dataFetched);
+        setWorkProfile(dataFetched)
         console.log(dataFetched);
+        if (dataFetched.job[0]){
+          setCategory(dataFetched.job[0].category_id);
+          setTitle(dataFetched.job[0].title);
+          setRate(dataFetched.job[0].rate_per_hour);
+          setBio(dataFetched.job[0].bio);
+        }
       } catch (error) {
         console.warn(error);
       }
@@ -67,8 +74,49 @@ function calculateRating(reviews){
         console.warn(error);
       }
     };
+
+    const editWorkProfile = async () => {
+      const url = `${fetchURL}/api/user/editjob`;
+      const body={category_id,title,rate_per_hour,bio};
+      try {
+        const response = await axios.post(url,body,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const dataFetched =response.data;
+        getWorkProfile();
+        toggleBottomNavigationView();
+        console.log(dataFetched)
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+
+    const addWorkProfile = async () => {
+      const url = `${fetchURL}/api/user/job`;
+      const body={category_id,title,rate_per_hour,bio};
+      try {
+        const response = await axios.post(url,body,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const dataFetched =response.data;
+        getWorkProfile();
+        toggleBottomNavigationView();
+        console.log(dataFetched)
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+
     const [reviews,setReviews]=useState();
     const [workProfile,setWorkProfile]=useState();
+    
+    const [category_id, setCategory] = useState('');
+    const [title, setTitle] = useState('');
+    const [rate_per_hour, setRate] = useState('');
+    const [bio, setBio] = useState('');
+    
 
     useEffect(() => {
       getWorkProfile();
@@ -115,7 +163,7 @@ function calculateRating(reviews){
         <SmallButton text="Edit Profile" color="#7C9BC9"  onPress={toggleBottomNavigationView}/>
     </View>
     :<View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
-        <SmallButton text="Add work profile" color="#33C47E"/>
+        <SmallButton text="Add work profile" color="#33C47E" onPress={toggleBottomNavigationView}/>
     </View>}
     {workProfile && workProfile.job[0] ?
     <View>
@@ -127,6 +175,7 @@ function calculateRating(reviews){
     {reviews && !reviews.reviews.length ==0 ?
     <View>
       <View style={{flexDirection:'row'}}>
+        <View style={{padding:40}}></View>
         <Text style={{ fontSize: 19, fontWeight:'bold',flex:1}}>Reviews</Text>
         <View style={{flexDirection:'row'}}>
         <Fontisto name="star" size={22} color="#33C47E" />
@@ -139,24 +188,75 @@ function calculateRating(reviews){
         </View>)}
     </View>
     :<View>
+       <View style={{padding:40}}></View>
       <View style={{flexDirection:'row'}}>
         <Text style={{ fontSize: 19, fontWeight:'bold',flex:1}}>Reviews</Text>
       </View>
       <Text style={{alignSelf:'center',marginTop:40}}>No reviews</Text>
     </View>}
  </View>
- <BottomSheet
+ {workProfile.job[0]?
+  <BottomSheet
+            visible={visible}
+            //setting the visibility state of the bottom shee
+            onBackButtonPress={toggleBottomNavigationView}
+            //Toggling the visibility state on the click of the back botton
+            onBackdropPress={toggleBottomNavigationView}
+            //Toggling the visibility state on the clicking out side of the sheet
+          >
+              <View style={styles.bottomNavigationView}>
+                  <Text style={globalStyles.modalTitle}>Edit</Text>
+                  <Text style={globalStyles.modalSubTitle}>Category</Text>
+                  <View style={{alignItems:'center'}}>
+                    <Dropdown selectedCategory={setCategory}/>
+                  </View>
+                  <Text style={globalStyles.modalSubTitle}>Title</Text>
+                  <View style={{alignItems:'center'}}>
+                    <Input color='#f1f1f1' placeholder={workProfile.job[0].title} value={title} setValue={setTitle}/>
+                  </View>
+                  <Text style={globalStyles.modalSubTitle}>Rate per hour</Text>
+                  <View style={{alignItems:'center'}}>
+                    <Input color='#f1f1f1' placeholder={workProfile.job[0].rate_per_hour} value={rate_per_hour} setValue={setRate}/>
+                  </View>
+                  <Text style={globalStyles.modalSubTitle}>Bio</Text>
+                  <View style={{alignItems:'center'}}>
+                    <LargeInput color='#f1f1f1' placeholder={workProfile.job[0].bio} value={bio} setValue={setBio}/>
+                  </View>
+                  <View style={{alignItems:'center',marginTop:20}}>
+                    <SmallButton color="#7C9BC9" text="Save" onPress={editWorkProfile}/>
+                  </View>
+              </View>
+          </BottomSheet>
+          :<BottomSheet
           visible={visible}
           //setting the visibility state of the bottom shee
           onBackButtonPress={toggleBottomNavigationView}
           //Toggling the visibility state on the click of the back botton
           onBackdropPress={toggleBottomNavigationView}
           //Toggling the visibility state on the clicking out side of the sheet
-        >
-            <View style={styles.bottomNavigationView}>
-                <Text style={globalStyles.modalTitle}>Edit</Text>
-            </View>
-        </BottomSheet>
+        ><View style={styles.bottomNavigationView}>
+        <Text style={globalStyles.modalTitle}>Add work profile</Text>
+        <Text style={globalStyles.modalSubTitle}>Category</Text>
+        <View style={{alignItems:'center'}}>
+          <Dropdown selectedCategory={setCategory}/>
+        </View>
+        <Text style={globalStyles.modalSubTitle}>Title</Text>
+        <View style={{alignItems:'center'}}>
+          <Input color='#f1f1f1' placeholder='' value={title} setValue={setTitle}/>
+        </View>
+        <Text style={globalStyles.modalSubTitle}>Rate per hour</Text>
+        <View style={{alignItems:'center'}}>
+          <Input color='#f1f1f1' placeholder='' value={rate_per_hour} setValue={setRate}/>
+        </View>
+        <Text style={globalStyles.modalSubTitle}>Bio</Text>
+        <View style={{alignItems:'center'}}>
+          <LargeInput color='#f1f1f1' placeholder='' value={bio} setValue={setBio}/>
+        </View>
+        <View style={{alignItems:'center',marginTop:20}}>
+          <SmallButton color="#33C47E" text="Post" onPress={addWorkProfile}/>
+        </View>
+    </View></BottomSheet>
+ }
  </ScrollView>
  </View>:<Text style={{alignSelf:'center',marginVertical:300}}>Loading...</Text>}
  </View>
@@ -170,7 +270,7 @@ const styles = StyleSheet.create({
     bottomNavigationView: {
       backgroundColor: '#fff',
       width: '100%',
-      height: 350,
+      height: 560,
       padding:10,
       borderTopEndRadius:20,
       borderTopStartRadius:20
