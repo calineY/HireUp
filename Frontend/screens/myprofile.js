@@ -108,7 +108,9 @@ function calculateRating(reviews){
     
     {workProfile && workProfile.job[0] ?
     <View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
-        <SmallButton text="Available" color="#33C47E"/>
+        {workProfile.job[0].available===0?
+        <SmallButton text="Go public" color="#33C47E"/>
+        :<SmallButton text="Hide profile" color="#F24E1E"/>}
         <SmallButton text="Edit Profile" color="#7C9BC9"  />
     </View>
     :<View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
