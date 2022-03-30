@@ -1,38 +1,34 @@
-import React, {useState} from 'react';
 
 
-function App() {
-  // Array of objects containing our fruit data
-  let fruits = [
-    { label: "Apple", value: "🍎" },
-    { label: "Banana", value: "🍌" },
-    { label: "Orange", value: "🍊" }
-]
+import React from 'react'
+import { useContext } from 'react';
 
-// Using state to keep track of what the selected fruit is
-let [fruit, setFruit] = useState("⬇️ Select a fruit ⬇️")
+import SelectDropdown from 'react-native-select-dropdown'
+import { categoriesContext } from '../context/categoriesContext';
 
-// Using this function to update the state of fruit
-// whenever a new option is selected from the dropdown
-let handleFruitChange = (e) => {
-  setFruit(e.target.value)
-}
-
+const dropdown = (prop) => {
+    const { categoriesArray, setCategoriesArray } = useContext(categoriesContext);
   return (
-    <div className="App">
-    {/* Displaying the value of fruit */}
-    {fruit}
-    <br />
-
-    <select onChange={handleFruitChange}> 
-      <option value="⬇️ Select a fruit ⬇️"> -- Select a fruit -- </option>
-            {/* Mapping through each fruit object in our fruits array
-          and returning an option element with the appropriate attributes / values.
-         */}
-      {fruits.map((fruit) => <option key={fruit.label} value={fruit.value}>{fruit.label}</option>)}
-    </select>
-    </div>
-  );
+    <SelectDropdown
+	data={categoriesArray.categories}
+	onSelect={(selectedItem) => {
+		prop.selectedCategory(selectedItem.id);
+	}}
+	buttonTextAfterSelection={(selectedItem) => {
+		// text represented after item is selected
+		// if data array is an array of objects then return selectedItem.property to render after item is selected
+		return selectedItem.name
+	}}
+	rowTextForSelection={(item) => {
+		// text represented for each item in dropdown
+		// if data array is an array of objects then return item.property to represent item in dropdown
+		return item.name
+	}}
+    buttonStyle={{borderRadius:30,width:365}}
+    dropdownStyle={{borderRadius:30}}
+   
+/>
+  )
 }
 
-export default App;
+export default dropdown
