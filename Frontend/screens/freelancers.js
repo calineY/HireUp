@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { globalStyles } from '../styles/global';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState,useEffect } from 'react';
-import { userContext } from '../userContext';
+import { userContext } from '../context/userContext';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import { Ionicons } from '@expo/vector-icons';
