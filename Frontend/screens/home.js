@@ -6,6 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import { userContext } from '../userContext';
+import fetchURL from '../fetchURL';
 
 
 
@@ -17,7 +18,7 @@ export default function Home({navigation}){
         getCategories();
       }, []);
     const getCategories = async () => {
-        const url = "http://192.168.1.231:8000/api/user/getcategories";
+        const url = `${fetchURL}/api/user/getcategories`;
         try {
           const response = await axios.get(url, {
             headers: { Authorization: `Bearer ${token}` },
@@ -45,7 +46,7 @@ export default function Home({navigation}){
                 <TouchableOpacity style={homeStyles.touchableOpacity} onPress={()=> navigation.navigate("Freelancers",item)}>
                     <View style={homeStyles.view}>
                         <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']} style={homeStyles.linearGradient}>
-                            <Image style={homeStyles.image} source={{uri:`http://192.168.1.231:8000/${item.picture_url}`}}/>
+                            <Image style={homeStyles.image} source={{uri:`${fetchURL}/${item.picture_url}`}}/>
                         </LinearGradient>
                         <Text style={homeStyles.text}>{item.name}</Text>
                     </View>

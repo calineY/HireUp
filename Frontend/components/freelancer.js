@@ -4,6 +4,7 @@ import { globalStyles } from '../styles/global';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { userContext } from '../userContext';
+import fetchURL from '../fetchURL';
 
 
 
@@ -31,7 +32,7 @@ const freelancer = ({name,rate,latitude,longitude,title,picture}) => {
       <TouchableOpacity onPress={()=> navigation.navigate("Freelancer Profile")}>
                   <View style={globalStyles.freelancer}>
                     <View style={{ flex:0.3 , marginTop: 10 }}>
-                        <Image style={{width:73,height:73,borderRadius:100,marginBottom:5}} source={{uri:`http://192.168.1.231:8000/${picture}`}}/>
+                        <Image style={{width:73,height:73,borderRadius:100,marginBottom:5}} source={{uri:`${fetchURL}/${picture}`}}/>
                     </View>
                     <View style={{ flex:0.7 }}>
                         <Text style={{ fontSize: 22, fontWeight: "bold"}}>{name}</Text>

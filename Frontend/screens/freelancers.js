@@ -8,6 +8,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import { Ionicons } from '@expo/vector-icons';
 import Freelancer from '../components/freelancer';
+import fetchURL from '../fetchURL';
 
 
 
@@ -21,7 +22,7 @@ export default function Freelancers({route,navigation}){
 
   const body={category_id:route.params.id};
     const getFreelancers = async () => {
-        const url = "http://192.168.1.231:8000/api/user/getfreelancers";
+        const url = `${fetchURL}/api/user/getfreelancers`;
         try {
           const response = await axios.post(url,body,
           {

@@ -7,6 +7,7 @@ import Button from '../components/buttonLarge'
 import {useState} from 'react';
 import axios from 'axios';
 import { userContext } from '../userContext';
+import fetchURL from '../fetchURL';
 
 
 export default function Login({navigation}){
@@ -30,7 +31,7 @@ export default function Login({navigation}){
       };
 
       const loginFetch = async () => {
-        const url = "http://192.168.1.231:8000/api/auth/login";
+        const url = `${fetchURL}/api/auth/login`;
     
         try {
           const response = await axios.post(url, data);

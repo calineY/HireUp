@@ -14,6 +14,7 @@ import { userContext } from '../userContext';
 import axios from 'axios';
 import { myprofileStyles } from '../styles/myprofileStyles';
 import Review from '../components/review';
+import fetchURL from '../fetchURL';
 
 
 
@@ -39,7 +40,7 @@ function calculateRating(reviews){
 
   const user_id=authUser.user.id;
   const getWorkProfile = async () => {
-      const url = `http://192.168.1.231:8000/api/user/getprofile?user_id=${user_id}`;
+      const url = `${fetchURL}/api/user/getprofile?user_id=${user_id}`;
       try {
         const response = await axios.get(url,
         {
@@ -53,7 +54,7 @@ function calculateRating(reviews){
       }
     };
     const getReviews = async () => {
-      const url = `http://192.168.1.231:8000/api/user/reviews?user_id=${user_id}`;
+      const url = `${fetchURL}/api/user/reviews?user_id=${user_id}`;
       try {
         const response = await axios.get(url,
         {
@@ -84,7 +85,7 @@ function calculateRating(reviews){
     <View style={myprofileStyles.headerView}>
         <View style={{flex:0.4}}>
           <View  style={myprofileStyles.imageView}>
-            <Image style={myprofileStyles.image} source={{uri:`http://192.168.1.231:8000/${authUser.user.picture_url}`}}/>
+            <Image style={myprofileStyles.image} source={{uri:`${fetchURL}/${authUser.user.picture_url}`}}/>
           </View>
         </View>
         <View style={{ flex:0.6 }}>
@@ -111,7 +112,7 @@ function calculateRating(reviews){
         {workProfile.job[0].available===0?
         <SmallButton text="Go public" color="#33C47E"/>
         :<SmallButton text="Hide profile" color="#F24E1E"/>}
-        <SmallButton text="Edit Profile" color="#7C9BC9"  />
+        <SmallButton text="Edit Profile" color="#7C9BC9"  onPress={toggleBottomNavigationView}/>
     </View>
     :<View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
         <SmallButton text="Add work profile" color="#33C47E"/>

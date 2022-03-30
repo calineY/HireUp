@@ -7,6 +7,7 @@ import Button from '../components/buttonLarge'
 import { useState } from 'react';
 import PhoneInput from "react-native-phone-number-input";
 import axios from 'axios';
+import fetchURL from '../fetchURL';
 
 
 
@@ -62,7 +63,7 @@ export default function Signup({navigation}){
   };
 
   const registerFetch = async () => {
-    const url = "http://192.168.1.231:8000/api/auth/register";
+    const url = `${fetchURL}/api/auth/register`;
 
     try {
       const response = await axios.post(url, data);
