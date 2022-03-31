@@ -27,7 +27,6 @@ const freelancer = ({name,rate,latitude,longitude,title,picture,navigation,item,
       var d =Math.floor( R * c); // Distance in km
       return d; 
     }
-    console.log(authUser.user.id);
   return (
     <View>
       {item_id!=authUser.user.id?

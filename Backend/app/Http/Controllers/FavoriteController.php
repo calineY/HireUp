@@ -39,23 +39,17 @@ class FavoriteController extends Controller
 
     public function deleteFavorite(Request $request) {
         $validator = Validator::make($request->all(), [
-            'id'=>'required|numeric',
+            'user_id'=>'required|numeric',
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        $favorite=Favorite::find($request->id);
-        if($favorite->from_user_id==Auth::user()->id){
-            $favorite->delete();
-            return response()->json([
-                'message' => 'Removed from favorites',
-                'favorite' => $favorite
-            ], 200);
-        }
-        
+        $favorite=Favorite::where('to_user_id','=',$request->user_id)->where('from_user_id','=',Auth::user()->id)->delete();
         return response()->json([
-            'message' => 'Action not allowed',
-        ], 401);
+            'message' => 'Removed from favorites',
+            'favorite' => $favorite
+        ], 200);
+        
     }
 
 }
