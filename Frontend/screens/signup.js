@@ -68,7 +68,7 @@ export default function Signup({navigation}){
     try {
       const response = await axios.post(url, data);
       const dataFetched =response.data;
-      console.warn(dataFetched);
+      navigation.navigate('Login');
     } catch (error) {
       console.warn(error);
     }

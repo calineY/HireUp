@@ -30,7 +30,8 @@ class FavoriteController extends Controller
         $favorites= Favorite::join('users', 'users.id', '=', 'favorites.to_user_id')
         ->join('jobs', 'favorites.to_user_id', '=', 'jobs.user_id')
         ->where("favorites.from_user_id", "=", Auth::user()->id)
-        ->get(['users.name','users.picture_url','jobs.*']);
+        ->where("jobs.available","=",1)
+        ->get(['users.name','users.latitude','users.longitude','users.picture_url','jobs.*']);
         return response()->json([
             'message' => 'Success',
             'favorites' => $favorites

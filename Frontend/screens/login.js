@@ -37,7 +37,6 @@ export default function Login({navigation}){
           const response = await axios.post(url, data);
           const dataFetched = response.data;
           setAuthUser(dataFetched);
-          console.warn(dataFetched);
         } catch (error) {
           console.warn(error);
         }

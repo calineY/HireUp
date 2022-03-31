@@ -14,7 +14,7 @@ const freelancer = ({name,rate,latitude,longitude,title,picture,navigation,item,
     const { authUser, setAuthUser } = useContext(userContext);
     const lat1=authUser.user.latitude;
     const lon1=authUser.user.longitude;
-  
+    
     function calculateDistance(lat2,lon2){
       var R = 6371; // Radius of the earth in km
       var dLat = (lat2 - lat1) * (Math.PI / 180);  // deg2rad below
