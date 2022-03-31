@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Favorite;
 use Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,10 +42,12 @@ class JobController extends Controller
         }
         $user=User::find($request->user_id);
         $job=$user->job()->get();
+        $is_favorite=Favorite::where('to_user_id','=',$request->user_id)->where('from_user_id','=',Auth::user()->id)->get();
         return response()->json([
             'message' => 'Success',
             'user'=>$user,
-            'job' => $job
+            'job' => $job,
+            'isFavorite'=>$is_favorite
         ], 200);
 
     }
