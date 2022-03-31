@@ -19,8 +19,9 @@ const Favorites = ({navigation}) => {
   const token=authUser.access_token;
 
   useEffect(() => {
-      getFavorites();
-  }, []);
+      navigation.addListener('focus',()=>{getFavorites()});
+  });
+
 
   const user_id=authUser.id;
 

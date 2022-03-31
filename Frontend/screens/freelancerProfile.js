@@ -62,6 +62,7 @@ const FreelancerProfile = ({route}) => {
         }
     };
 
+
     const reviewBody={from_user_id:authUser.id,to_user_id:user_id,rating,review}
     const addReview = async () => {
     const url = `${fetchURL}/api/user/review`;
@@ -79,6 +80,32 @@ const FreelancerProfile = ({route}) => {
         console.warn(error);
     }
     };
+    
+    const addFavorite = async () => {
+        const url = `${fetchURL}/api/user/favorite`;
+        try {
+          const response = await axios.post(url,{to_user_id:user_id},
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          getWorkProfile();
+        } catch (error) {
+          console.warn(error);
+        }
+      };
+
+      const removeFavorite = async () => {
+        const url = `${fetchURL}/api/user/favorites`;
+        try {
+          const response = await axios.post(url,{user_id},
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          getWorkProfile();
+        } catch (error) {
+          console.warn(error);
+        }
+      };
 
     const images = {
         starFilled: require('../assets/star_filled.png'),
@@ -163,8 +190,8 @@ const FreelancerProfile = ({route}) => {
         </View>
         <View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
             {workProfile && workProfile.isFavorite.length==0?
-            <SmallButton text="Add to favorites" color="#7C9BC9"/>
-            :<SmallButton text="Remove favorite" color="#F24E1E"/>}
+            <SmallButton text="Add to favorites" color="#7C9BC9" onPress={addFavorite}/>
+            :<SmallButton text="Remove favorite" color="#F24E1E" onPress={removeFavorite}/>}
             <SmallButton text="Contact" color="#33C47E"  onPress={()=>redirectToWhatsapp(workProfile.user.phone_number)}/>
         </View>
         <Text style={{ fontSize: 19, fontWeight:'bold' }}>Bio</Text>
