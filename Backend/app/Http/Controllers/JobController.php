@@ -109,6 +109,7 @@ class JobController extends Controller
         }
         $freelancers=Job::join('users', 'users.id', '=', 'jobs.user_id')
         ->where("jobs.category_id", "=", $request->category_id)
+        ->where('jobs.available','=',1)
         ->get(['users.name','users.picture_url','users.latitude','users.longitude','jobs.*']);
         return response()->json([
             'message' => 'Success',

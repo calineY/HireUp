@@ -109,6 +109,23 @@ function calculateRating(reviews){
       }
     };
 
+    const toggleAvailablity = async () => {
+      const url = `${fetchURL}/api/user/available`;
+      const id=workProfile.job[0].id
+      const body={id};
+      try {
+        const response = await axios.post(url,body,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const dataFetched =response.data;
+        getWorkProfile();
+        console.log(dataFetched)
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+
     const [reviews,setReviews]=useState();
     const [workProfile,setWorkProfile]=useState();
     
@@ -158,8 +175,8 @@ function calculateRating(reviews){
     {workProfile && workProfile.job[0] ?
     <View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
         {workProfile.job[0].available===0?
-        <SmallButton text="Go public" color="#33C47E"/>
-        :<SmallButton text="Hide profile" color="#F24E1E"/>}
+        <SmallButton text="Go public" color="#33C47E" onPress={toggleAvailablity}/>
+        :<SmallButton text="Hide profile" color="#F24E1E" onPress={toggleAvailablity}/>}
         <SmallButton text="Edit Profile" color="#7C9BC9"  onPress={toggleBottomNavigationView}/>
     </View>
     :<View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
