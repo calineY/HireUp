@@ -21,6 +21,7 @@ export default function Freelancers({route,navigation}){
   }, []);
 
   const body={category_id:route.params.id};
+  
     const getFreelancers = async () => {
         const url = `${fetchURL}/api/user/getfreelancers`;
         try {
@@ -43,7 +44,7 @@ export default function Freelancers({route,navigation}){
                 key={(item) => item.id}
                 style={globalStyles.containerList}
                 renderItem={({ item }) => (
-                <Freelancer name={item.name} rate={item.rate_per_hour} latitude={item.latitude} longitude={item.longitude} title={item.title} picture={item.picture_url}/>
+                <Freelancer name={item.name} rate={item.rate_per_hour} latitude={item.latitude} longitude={item.longitude} title={item.title} picture={item.picture_url} navigation={navigation} item={item}/>
         )}
       />
       

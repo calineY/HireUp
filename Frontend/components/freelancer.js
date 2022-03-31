@@ -9,7 +9,7 @@ import fetchURL from '../fetchURL';
 
 
 
-const freelancer = ({name,rate,latitude,longitude,title,picture}) => {
+const freelancer = ({name,rate,latitude,longitude,title,picture,navigation,item}) => {
 
     const { authUser, setAuthUser } = useContext(userContext);
     const lat1=authUser.user.latitude;
@@ -29,7 +29,7 @@ const freelancer = ({name,rate,latitude,longitude,title,picture}) => {
     }
   return (
     <View>
-      <TouchableOpacity onPress={()=> navigation.navigate("Freelancer Profile")}>
+      <TouchableOpacity onPress={()=> navigation.navigate("Freelancer Profile",item)}>
                   <View style={globalStyles.freelancer}>
                     <View style={{ flex:0.3 , marginTop: 10 }}>
                         <Image style={{width:73,height:73,borderRadius:100,marginBottom:5}} source={{uri:`${fetchURL}/${picture}`}}/>

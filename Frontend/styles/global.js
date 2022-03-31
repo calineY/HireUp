@@ -136,5 +136,12 @@ export const globalStyles = StyleSheet.create({
         fontWeight:'bold',
         padding:10,
         color:'#5a5a5a'
-     }
+     },
+    loadingView:{
+    justifyContent:'center',
+    alignItems:'center',
+    flex:1,
+    alignContent:'center',
+    padding:200
+    }
   });

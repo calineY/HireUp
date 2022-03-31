@@ -1,4 +1,4 @@
-import { View, Text,Linking,StyleSheet, Easing  } from 'react-native'
+import { View, Text,Linking,StyleSheet, Easing,ActivityIndicator,Image  } from 'react-native'
 import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons'; 
@@ -7,23 +7,62 @@ import { Ionicons } from '@expo/vector-icons';
 import SmallButton from '../components/button'
 import { globalStyles } from '../styles/global';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { BottomSheet } from 'react-native-btr';
 import Rating from 'react-native-rating';
 import Input from '../components/input';
+import fetchURL from '../fetchURL';
+import axios from 'axios';
+import { useContext } from 'react';
+import { userContext } from '../context/userContext';
+import { myprofileStyles } from '../styles/myprofileStyles';
 
 
 
+const FreelancerProfile = ({route}) => {
+    const { authUser, setAuthUser } = useContext(userContext);
+    const token=authUser.access_token;
 
+    const [workProfile,setWorkProfile]=useState();
+    const [reviews,setReviews]=useState();
 
+    const user_id=route.params.user_id;
+    console.log(route)
+    useEffect(() => {
+        getWorkProfile();
+    },[] );
 
-const FreelancerProfile = () => {
+    function calculateRating(reviews){
+        let sum =0;
+        let ratings=0;
+        reviews.forEach(element => {
+          ratings+=element.rating;
+          sum++;
+        });
+        return ratings/sum+'/5'+'('+sum+')';
+      }
+    
+    const getWorkProfile = async () => {
+        const url = `${fetchURL}/api/user/getprofile?user_id=${user_id}`;
+        try {
+          const response = await axios.get(url,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const dataFetched =response.data;
+          setWorkProfile(dataFetched)
+          console.log(dataFetched);
+        } catch (error) {
+          console.warn(error);
+        }
+      };
+
     const images = {
         starFilled: require('../assets/star_filled.png'),
         starUnfilled: require('../assets/star_unfilled.png')
       }
-    const redirectToWhatsapp = () =>{
-        Linking.openURL('whatsapp://send?text=Hello I found you on HireUp!&phone=+96171767010');
+    const redirectToWhatsapp = (phone) =>{
+        Linking.openURL(`whatsapp://send?text=Hello I found you on HireUp!&phone=${phone}`);
     }
     const [visible, setVisible] = useState(false);
 
@@ -31,86 +70,91 @@ const FreelancerProfile = () => {
     //Toggling the visibility state of the bottom sheet
     setVisible(!visible);
   };
-    const [freelancers,setFreelancers]=useState([
-        {
-            
-            name: "John Doe",
-            picture_url: "user.png",
-            id: 1,
-            from_user_id: 2,
-            to_user_id: 3,
-            rating: 5,
-            review: "Very professional",
-            created_at: "2022-03-13T19:54:49.000000Z",
-            updated_at: "2022-03-13T19:54:49.000000Z"
-          },
-          {
-            name: "Karim Khalifeh",
-            picture_url: "user.png",
-            id: 2,
-            from_user_id: 2,
-            to_user_id: 3,
-            rating: 4,
-            review: "Friendly",
-            created_at: "2022-03-13T19:54:49.000000Z",
-            updated_at: "2022-03-13T19:54:49.000000Z"
-          },
-          {
-            name: "Jane Doe",
-            picture_url: "user.png",
-            id: 3,
-            from_user_id: 2,
-            to_user_id: 3,
-            rating: 4,
-            review: "Great",
-            created_at: "2022-03-13T19:54:49.000000Z",
-            updated_at: "2022-03-13T19:54:49.000000Z"
-          },
+  const getReviews = async () => {
+    const url = `${fetchURL}/api/user/reviews?user_id=${user_id}`;
+    try {
+      const response = await axios.get(url,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const dataFetched =response.data;
+      setReviews(dataFetched);
+      console.log(dataFetched)
+    } catch (error) {
+      console.warn(error);
+    }
+  };
 
-        ]);
+    const lat1=authUser.user.latitude;
+    const lon1=authUser.user.longitude;
+
+  function calculateDistance(lat2,lon2){
+    var R = 6371; // Radius of the earth in km
+    var dLat = (lat2 - lat1) * (Math.PI / 180);  // deg2rad below
+    var dLon = (lon2 - lon1) * (Math.PI / 180);
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d =Math.floor( R * c); // Distance in km
+    return d; 
+  }
+
   return (
+      <View>
+      {workProfile?
       <ScrollView>
-      <View style={{alignContent:"center",flex:1, padding:30}}>
-        <View style={{flexDirection:"row"}}>
-            <View style={{flex:0.4}}>
-                <FontAwesome5 name="user-circle" size={100} color="black"/>
-            </View>
-            <View style={{ flex:0.6 }}>
-                <Text style={{ fontSize: 28, fontWeight: "bold" }}>
-                    John Doe
-                </Text>
-                <Text style={{ fontSize: 22 }}>
-                    Interior designer
-                </Text>
+      <View style={myprofileStyles.innerView}>
+    <View style={myprofileStyles.headerView}>
+        <View style={{flex:0.4}}>
+          <View  style={myprofileStyles.imageView}>
+            <Image style={myprofileStyles.image} source={{uri:`${fetchURL}/${authUser.user.picture_url}`}}/>
+          </View>
+        </View>
+        <View style={{ flex:0.6 }}>
+            <Text style={myprofileStyles.name}>
+                {workProfile.user.name}
+            </Text>
+            <Text style={{ fontSize: 22 }}>
+                {workProfile.job[0].title}
+              </Text>
             </View>
         </View>
         <View style={{flexDirection:"row", justifyContent:'center', marginTop:15, marginStart:15}}>
-            <View style={{flexDirection:"row", flex:0.33}}>
+            <View style={{flexDirection:"row", flex:0.36}}>
                 <FontAwesome name="dollar" size={24} color="orange" />
-                <Text style={{marginLeft:3}}>20/hour</Text>
+                <Text style={{marginLeft:3}}>{workProfile && workProfile.job[0].rate_per_hour}/hour</Text>
             </View>
-            <View style={{flexDirection:"row", flex:0.33}}>
+            <View style={{flexDirection:"row", flex:0.3}}>
                 <Fontisto name="star" size={22} color="#33C47E" />
-                <Text style={{marginLeft:3}}>5/5(2)</Text>
+                {reviews && !reviews.reviews.length ==0 ?
+                <View><Text style={{marginLeft:3}}>{calculateRating(reviews.reviews)}</Text></View>
+                :<View><Text style={{marginLeft:3}}>(0)</Text></View>}
+                
             </View>
             <View style={{flexDirection:"row", flex:0.33}}>
                 <Ionicons name="md-location-sharp" size={24} color="red" />
-                <Text>12 km</Text>
+                <Text>{calculateDistance(route.params.latitude,route.params.longitude)} km</Text>
             </View>
         </View>
         <View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
             <SmallButton text="Add to favorites" color="#7C9BC9"/>
-            <SmallButton text="Contact" color="#33C47E"  onPress={redirectToWhatsapp}/>
+            <SmallButton text="Contact" color="#33C47E"  onPress={()=>redirectToWhatsapp(workProfile.user.phone_number)}/>
         </View>
         <Text style={{ fontSize: 19, fontWeight:'bold' }}>Bio</Text>
-        <Text style={globalStyles.bio}>Lorem ipsum dolor sit amet,  et dolore magna aliqua. Ut enim ad minim veniamlabore et dolore magna aliqua. Ut enim ad minim veniamlabore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
+        <Text style={globalStyles.bio}>{workProfile.job[0].bio} </Text>
+        <View style={{padding:20}}></View>
         <View style={{flexDirection:'row'}}>
             <Text style={{ fontSize: 19, fontWeight:'bold',flex:1,paddingTop:13}}>Reviews</Text>
             <View style={{paddingBottom:10,marginRight:-8}}>
                 <SmallButton color="#33C47E" text="Add review" onPress={toggleBottomNavigationView}/>
             </View>
         </View>
-        {freelancers.map((item)=>
+        
+        {reviews && !reviews.reviews.length ==0 ?
+        <View>
+        {reviews.reviews.map((item)=>
             <View key={item.id}>
             <View style={{backgroundColor:'#fff',width:360,borderRadius: 20,marginBottom:10,alignSelf:'center',padding:15,textAlignVertical:'center',}}>
                 <View style={{flexDirection:'row',marginBottom:3 }}>
@@ -124,7 +168,7 @@ const FreelancerProfile = () => {
                     <Text>{item.review}</Text>
                 </View>
             </View>
-            </View>)}
+            </View>)}</View>:<View><Text style={{alignSelf:'center',marginTop:40}}>No reviews</Text></View>}
  </View>
  <BottomSheet
           visible={visible}
@@ -160,9 +204,8 @@ const FreelancerProfile = () => {
             </View>
         </BottomSheet>
  </ScrollView>
+ :<View style={globalStyles.loadingView}><ActivityIndicator size="large" color="green"/></View>}</View>)}
 
-  )
-}
 
 export default FreelancerProfile
 

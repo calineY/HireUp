@@ -1,5 +1,5 @@
 
-import { View, Text,StyleSheet,Image } from 'react-native'
+import { View, Text,StyleSheet,Image,ActivityIndicator } from 'react-native'
 import React from 'react'
 import { Fontisto } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
@@ -155,9 +155,9 @@ function calculateRating(reviews){
         </View>
         <View style={{ flex:0.6 }}>
             <Text style={myprofileStyles.name}>
-                {authUser.user.name}
+                {workProfile.user.name}
             </Text>
-            {/* if user has no work profile */}
+            {/* handeling if user has no work profile */}
             {workProfile && workProfile.job[0] ?
             <View>
               <Text style={{ fontSize: 22 }}>
@@ -275,7 +275,7 @@ function calculateRating(reviews){
     </View></BottomSheet>
  }
  </ScrollView>
- </View>:<Text style={{alignSelf:'center',marginVertical:300}}>Loading...</Text>}
+ </View>:<View style={globalStyles.loadingView}><ActivityIndicator size="large" color="green"/></View>}
  </View>
   )
 }
