@@ -36,7 +36,7 @@ function calculateRating(reviews){
     ratings+=element.rating;
     sum++;
   });
-  return ratings/sum+'/5'+'('+sum+')';
+  return ratings/sum+'/5'+' ('+sum+')';
 }
 
   const user_id=authUser.user.id;
@@ -191,8 +191,8 @@ function calculateRating(reviews){
     
     {reviews && !reviews.reviews.length ==0 ?
     <View>
+      <View style={{padding:20}}></View>
       <View style={{flexDirection:'row'}}>
-        <View style={{padding:40}}></View>
         <Text style={{ fontSize: 19, fontWeight:'bold',flex:1}}>Reviews</Text>
         <View style={{flexDirection:'row'}}>
         <Fontisto name="star" size={22} color="#33C47E" />

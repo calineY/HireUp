@@ -9,7 +9,7 @@ import fetchURL from '../fetchURL';
 
 
 
-const freelancer = ({name,rate,latitude,longitude,title,picture,navigation,item}) => {
+const freelancer = ({name,rate,latitude,longitude,title,picture,navigation,item,item_id}) => {
 
     const { authUser, setAuthUser } = useContext(userContext);
     const lat1=authUser.user.latitude;
@@ -27,8 +27,10 @@ const freelancer = ({name,rate,latitude,longitude,title,picture,navigation,item}
       var d =Math.floor( R * c); // Distance in km
       return d; 
     }
+    console.log(authUser.user.id);
   return (
     <View>
+      {item_id!=authUser.user.id?
       <TouchableOpacity onPress={()=> navigation.navigate("Freelancer Profile",item)}>
                   <View style={globalStyles.freelancer}>
                     <View style={{ flex:0.3 , marginTop: 10 }}>
@@ -50,6 +52,23 @@ const freelancer = ({name,rate,latitude,longitude,title,picture,navigation,item}
                     </View>
                   </View>
                 </TouchableOpacity>
+                :<TouchableOpacity onPress={()=> navigation.navigate("My Profile")}>
+                  <View style={globalStyles.freelancer}>
+                  <View style={{ flex:0.3 , marginTop: 10 }}>
+                      <Image style={{width:73,height:73,borderRadius:100,marginBottom:5}} source={{uri:`${fetchURL}/${picture}`}}/>
+                  </View>
+                  <View style={{ flex:0.7 }}>
+                      <Text style={{ fontSize: 22, fontWeight: "bold"}}>{name}</Text>
+                        <View style={{flexDirection:'row',marginTop:2}}>
+                          <View style={{flexDirection:"row"}}>
+                              <FontAwesome name="dollar" size={22} color="orange" />
+                              <Text style={{marginLeft:3}}>{rate}/hour</Text>
+                          </View>
+                        </View>
+                        <Text style={{ fontSize: 17}}>{title}</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>}
     </View>
   )
 }
