@@ -26,10 +26,15 @@ const FreelancerProfile = ({route}) => {
     const [workProfile,setWorkProfile]=useState();
     const [reviews,setReviews]=useState();
 
+    const [rating,setRating]=useState();
+    const [review,setReview]=useState();
+
     const user_id=route.params.user_id;
+
     console.log(route)
     useEffect(() => {
         getWorkProfile();
+        getReviews();
     },[] );
 
     function calculateRating(reviews){
@@ -39,7 +44,7 @@ const FreelancerProfile = ({route}) => {
           ratings+=element.rating;
           sum++;
         });
-        return ratings/sum+'/5'+'('+sum+')';
+        return ratings/sum+'/5'+' ('+sum+')';
       }
     
     const getWorkProfile = async () => {
@@ -55,7 +60,25 @@ const FreelancerProfile = ({route}) => {
         } catch (error) {
           console.warn(error);
         }
-      };
+    };
+
+    const reviewBody={from_user_id:authUser.id,to_user_id:user_id,rating,review}
+    const addReview = async () => {
+    const url = `${fetchURL}/api/user/review`;
+    try {
+        const response = await axios.post(url,reviewBody,
+        {
+        headers: { Authorization: `Bearer ${token}` },
+        });
+        const dataFetched =response.data;
+        getReviews();
+        toggleBottomNavigationView();
+        setRating();
+        setReview();
+    } catch (error) {
+        console.warn(error);
+    }
+    };
 
     const images = {
         starFilled: require('../assets/star_filled.png'),
@@ -70,6 +93,7 @@ const FreelancerProfile = ({route}) => {
     //Toggling the visibility state of the bottom sheet
     setVisible(!visible);
   };
+
   const getReviews = async () => {
     const url = `${fetchURL}/api/user/reviews?user_id=${user_id}`;
     try {
@@ -171,38 +195,32 @@ const FreelancerProfile = ({route}) => {
             </View>)}</View>:<View><Text style={{alignSelf:'center',marginTop:40}}>No reviews</Text></View>}
  </View>
  <BottomSheet
-          visible={visible}
-          //setting the visibility state of the bottom shee
-          onBackButtonPress={toggleBottomNavigationView}
-          //Toggling the visibility state on the click of the back botton
-          onBackdropPress={toggleBottomNavigationView}
-          //Toggling the visibility state on the clicking out side of the sheet
-        >
-            <View style={styles.bottomNavigationView}>
-                <Text style={globalStyles.modalTitle}>Add review</Text>
-                <Text style={globalStyles.modalSubTitle}>Rate</Text>
-                <Rating
-    onChange={rating => console.log(rating)}
-    selectedStar={images.starFilled}
-    unselectedStar={images.starUnfilled}
-    config={{
-      easing: Easing.inOut(Easing.ease),
-      duration: 350
-    }}
-    stagger={80}
-    maxScale={1.4}
-    starStyle={{
-      width: 40,
-      height: 40
-    }}
-  />
-  <Text style={globalStyles.modalSubTitle}>Review</Text>
-  <Input color='#f1f1f1' placeholder='Review'/>
-  <View style={{alignSelf:'center',paddingVertical:30}}>
-    <SmallButton color="#33C47E" text="Add review"/>
-  </View>
-            </View>
-        </BottomSheet>
+    visible={visible}
+    //setting the visibility state of the bottom shee
+    onBackButtonPress={toggleBottomNavigationView}
+    //Toggling the visibility state on the click of the back botton
+    onBackdropPress={toggleBottomNavigationView}
+    //Toggling the visibility state on the clicking out side of the sheet
+    >
+    <View style={styles.bottomNavigationView}>
+        <Text style={globalStyles.modalTitle}>Add review</Text>
+        <Text style={globalStyles.modalSubTitle}>Rate</Text>
+        <Rating
+        onChange={rated => setRating(rated)}
+        selectedStar={images.starFilled}
+        unselectedStar={images.starUnfilled}
+        config={{easing: Easing.inOut(Easing.ease),duration: 350}}
+        stagger={80}
+        maxScale={1.4}
+        starStyle={{width: 40,height: 40}}
+    />
+    <Text style={globalStyles.modalSubTitle}>Review</Text>
+    <Input color='#f1f1f1' placeholder='Review' value={review} setValue={setReview}/>
+    <View style={{alignSelf:'center',paddingVertical:30}}>
+        <SmallButton color="#33C47E" text="Add review" onPress={addReview}/>
+    </View>
+    </View>
+</BottomSheet>
  </ScrollView>
  :<View style={globalStyles.loadingView}><ActivityIndicator size="large" color="green"/></View>}</View>)}
 
