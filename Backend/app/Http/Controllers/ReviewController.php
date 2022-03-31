@@ -45,6 +45,16 @@ class ReviewController extends Controller
         ], 200);
     }
 
+    public function getOwnReviews() {
+        $reviews= Review::join('users', 'users.id', '=', 'reviews.to_user_id')
+        ->where("reviews.from_user_id", "=", Auth::user()->id)
+        ->get(['users.name','reviews.*']);
+        return response()->json([
+            'message' => 'Success',
+            'reviews' => $reviews
+        ], 200);
+    }
+
     public function deleteReview(Request $request) {
         $validator = Validator::make($request->all(), [
             'id'=>'required|numeric',
