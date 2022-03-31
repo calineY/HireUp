@@ -44,7 +44,8 @@ const FreelancerProfile = ({route}) => {
           ratings+=element.rating;
           sum++;
         });
-        return ratings/sum+'/5'+' ('+sum+')';
+        let res=ratings/sum;
+        return res.toFixed(1)+'/5'+' ('+sum+')';
       }
     
     const getWorkProfile = async () => {
