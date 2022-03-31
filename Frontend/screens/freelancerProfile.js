@@ -55,8 +55,8 @@ const FreelancerProfile = ({route}) => {
             headers: { Authorization: `Bearer ${token}` },
           });
           const dataFetched =response.data;
-          setWorkProfile(dataFetched)
-          console.log(dataFetched);
+          setWorkProfile(dataFetched);
+          console.log(dataFetched)
         } catch (error) {
           console.warn(error);
         }
@@ -103,7 +103,6 @@ const FreelancerProfile = ({route}) => {
       });
       const dataFetched =response.data;
       setReviews(dataFetched);
-      console.log(dataFetched)
     } catch (error) {
       console.warn(error);
     }
@@ -163,7 +162,9 @@ const FreelancerProfile = ({route}) => {
             </View>
         </View>
         <View style={{flexDirection:"row", justifyContent:'center',margin:15}}>
+            {workProfile && workProfile.isFavorite.length==0?
             <SmallButton text="Add to favorites" color="#7C9BC9"/>
+            :<SmallButton text="Remove favorite" color="#F24E1E"/>}
             <SmallButton text="Contact" color="#33C47E"  onPress={()=>redirectToWhatsapp(workProfile.user.phone_number)}/>
         </View>
         <Text style={{ fontSize: 19, fontWeight:'bold' }}>Bio</Text>

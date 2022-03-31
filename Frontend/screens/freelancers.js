@@ -44,7 +44,7 @@ export default function Freelancers({route,navigation}){
                 key={(item) => item.id}
                 style={globalStyles.containerList}
                 renderItem={({ item }) => (
-                <Freelancer name={item.name} rate={item.rate_per_hour} latitude={item.latitude} longitude={item.longitude} title={item.title} picture={item.picture_url} navigation={navigation} item={item} item_id={item.id}/>
+                <Freelancer name={item.name} rate={item.rate_per_hour} latitude={item.latitude} longitude={item.longitude} title={item.title} picture={item.picture_url} navigation={navigation} item={item} item_id={item.user_id}/>
         )}
       />
       
