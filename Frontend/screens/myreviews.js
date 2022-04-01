@@ -1,4 +1,4 @@
-import { View, Text,Linking } from 'react-native'
+import { View, Text,Alert} from 'react-native'
 import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons'; 
@@ -7,54 +7,65 @@ import { Ionicons } from '@expo/vector-icons';
 import SmallButton from '../components/button'
 import { globalStyles } from '../styles/global';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
-import { useState } from 'react';
 import Header from '../components/header';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useContext } from 'react';
+import { userContext } from '../context/userContext';
+import { useState,useEffect } from 'react';
+import fetchURL from '../fetchURL';
+import axios from 'axios';
 
 
-const MyReviews = () => {
-  const [freelancers,setFreelancers]=useState([
-    {
-        
-        name: "John Doe",
-        picture_url: "user.png",
-        id: 1,
-        from_user_id: 2,
-        to_user_id: 3,
-        rating: 5,
-        review: "Very professional",
-        created_at: "2022-03-13T19:54:49.000000Z",
-        updated_at: "2022-03-13T19:54:49.000000Z"
-      },
+
+
+const MyReviews = ({navigation}) => {
+
+  const { authUser, setAuthUser } = useContext(userContext)
+  const token=authUser.access_token;
+
+  useEffect(() => {
+      navigation.addListener('focus',()=>{getReviews()});
+  });
+
+  const [reviews,setReviews]=useState();
+
+
+  const getReviews = async () => {
+    const url = `${fetchURL}/api/user/myreviews`;
+    try {
+      const response = await axios.get(url,
       {
-        name: "Karim Khalifeh",
-        picture_url: "user.png",
-        id: 2,
-        from_user_id: 2,
-        to_user_id: 3,
-        rating: 4,
-        review: "Friendly",
-        created_at: "2022-03-13T19:54:49.000000Z",
-        updated_at: "2022-03-13T19:54:49.000000Z"
-      },
-      {
-        name: "Jane Doe",
-        picture_url: "user.png",
-        id: 3,
-        from_user_id: 2,
-        to_user_id: 3,
-        rating: 4,
-        review: "Great",
-        created_at: "2022-03-13T19:54:49.000000Z",
-        updated_at: "2022-03-13T19:54:49.000000Z"
-      },
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const dataFetched =response.data;
+      setReviews(dataFetched);
+    } catch (error) {
+      console.warn(error);
+    }
+  };
 
-    ]);
+  const deleteReview = async (id) => {
+    const url = `${fetchURL}/api/user/deletereview?id=${id}`;
+    try {
+      const response = await axios.get(url,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      var new_reviews = reviews.reviews.filter(function (el){
+          return el.id!==id ;
+        });
+      setReviews(new_reviews);
+      Alert.alert("Review deleted");
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+  
   return (
     <View>
       <Header title='My reviews'/>
             <FlatList
-                data={freelancers}
+                data={reviews && reviews.reviews}
                 key={(item) => item.id}
                 style={{width:360,alignSelf:'center',paddingTop:15}}
                 renderItem={({ item }) => (
@@ -67,13 +78,13 @@ const MyReviews = () => {
                       textAlignVertical:'center',}}>
                     <View style={{flexDirection:'row',}}>
                         <Text style={{ fontSize: 17, fontWeight: "bold", flex:1}}>To {item.name}</Text>
-                          <View><MaterialIcons name="delete-outline" size={36} color="red" /></View>
+                          <View><MaterialIcons name="delete-outline" size={36} color="red" onPress={()=>deleteReview(item.id)}/></View>
                     </View>
-                    <View style={{flexDirection:"row"}}>
-                            <Fontisto name="star" size={22} color="#33C47E" />
-                            <Text style={{marginLeft:3}}>{item.rating}/5</Text>
+                    <View style={{flexDirection:"row",top:-7}}>
+                      <Fontisto name="star" size={22} color="#33C47E" />
+                      <Text style={{marginLeft:3}}>{item.rating}/5</Text>
                     </View>
-                    <Text style={{paddingTop:10,fontSize:18}}>{item.review}</Text>
+                    <Text style={{fontSize:18}}>{item.review}</Text>
                 </View>
                 
         )}
