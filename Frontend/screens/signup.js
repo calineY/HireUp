@@ -1,5 +1,5 @@
-import React from 'react';
-import {ScrollView, View, Image, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import React, { useEffect } from 'react';
+import {ScrollView, View, Image, Text, TouchableOpacity, StyleSheet,Platform} from 'react-native';
 import { globalStyles } from '../styles/global';
 import hireup from '../assets/hireup.png';
 import Input from '../components/input';
@@ -8,16 +8,38 @@ import { useState } from 'react';
 import PhoneInput from "react-native-phone-number-input";
 import axios from 'axios';
 import fetchURL from '../fetchURL';
-
-
-
+// import LocationPicker from '../components/locationPicker';
+import Constants from 'expo-constants';
+import * as Location from 'expo-location';
 import MapView, { Marker } from 'react-native-maps';
 
 
 
 export default function Signup({navigation}){
-  
+  const [location, setLocation] = useState({latitude:30,longitude:30});
+  const [errorMsg, setErrorMsg] = useState(null);
 
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS === 'android' && !Constants.isDevice) {
+        setErrorMsg(
+          'Oops, this will not work on Snack in an Android emulator. Try it on your device!'
+        );
+        return;
+      }
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+      await Location.getCurrentPositionAsync({}).then((values)=>{
+      handleLocation( values.coords.latitude,values.coords.longitude)
+      });
+    })();
+    
+  }, []);
+
+ 
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -62,6 +84,7 @@ export default function Signup({navigation}){
     });
   };
 
+
   const registerFetch = async () => {
     const url = `${fetchURL}/api/auth/register`;
 
@@ -74,10 +97,7 @@ export default function Signup({navigation}){
     }
   };
 
-    const [pin, setPin] = useState({
-      latitude: 33.89020967953036,
-      longitude: 35.76620947569609,
-      });
+
     return(
         <View style={globalStyles.container}>
 
@@ -95,7 +115,7 @@ export default function Signup({navigation}){
 
                 <Text style={globalStyles.inputLabel}>Phone Number</Text>
                 <View style={{alignItems:'center'}}>
-                  <PhoneInput defaultCode='LB' onChangeFormattedText={(text) => {handlePhoneNumber(text); console.log(data.phone_number)}}/>
+                  <PhoneInput defaultCode='LB' onChangeFormattedText={(text) => {handlePhoneNumber(text);}}/>
                 </View>
                 <Text style={globalStyles.inputLabel}>Location</Text>
                 <View style={styles.container}>             
@@ -107,18 +127,7 @@ export default function Signup({navigation}){
                     }}
                     showsUserLocation={true}
                     provider="google">
-                    <Marker coordinate={pin}
-                        draggable={true}
-                        onDragEnd={(e) => {
-                          console.log("Drag end", e.nativeEvent.coordinate),
-                          setPin({
-                              latitude: e.nativeEvent.coordinate.latitude,
-                              longitude: e.nativeEvent.coordinate.longitude,
-                            });
-                          handleLocation( e.nativeEvent.coordinate.latitude,
-                            e.nativeEvent.coordinate.longitude);
-                        }}
-                        />
+                  
                 </MapView>
 
             </View>
