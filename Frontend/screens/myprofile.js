@@ -1,5 +1,5 @@
 
-import { View, Text,StyleSheet,Image,ActivityIndicator, Platform } from 'react-native'
+import { View, Text,StyleSheet,Image,ActivityIndicator, Platform,Alert } from 'react-native'
 import React from 'react'
 import { Fontisto } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
@@ -20,6 +20,7 @@ import Input from '../components/input';
 import LargeInput from '../components/largeInput';
 import * as ImagePicker from 'expo-image-picker';
 import { Feather } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 const MyProfile = ({navigation}) => {
@@ -185,6 +186,20 @@ function calculateRating(reviews){
         console.warn(error);
       }
     };
+    const logoutAlert =()=>{
+    Alert.alert(
+      "Are you sure you want to logout?",
+      "",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Yes", onPress: () => setAuthUser() }
+      ]
+    );
+    }
 
     const [reviews,setReviews]=useState();
     const [workProfile,setWorkProfile]=useState();
@@ -205,6 +220,9 @@ function calculateRating(reviews){
 <View style={myprofileStyles.mainView}>
   <View>
     <Header title='My profile'/>
+    <View style={{alignSelf:"flex-end",position:'absolute',top:50,right:20}}>
+      <MaterialIcons name="logout" size={25} color="#fff" onPress={logoutAlert}/>
+    </View>
   </View>
   <ScrollView>
   <View style={myprofileStyles.innerView}>
