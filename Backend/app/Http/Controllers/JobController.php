@@ -129,5 +129,18 @@ class JobController extends Controller
 
     }
 
+    public function editPicture(Request $request){
+        $user = Auth::user();
+        $image = $request->image;  // your base64 encoded
+        $user->picture_url = $image;
+        $user->save();
+        return response()->json([
+            'message' => 'Success',
+            'user'=>$user,
+        ], 200);
+
+        return response()->json($user, 200);
+    }
+
 
 }

@@ -27,7 +27,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::group(['prefix' => 'user'], function ($router) {
         Route::get('/profile', [AuthController::class, 'userProfile']); 
         Route::post('/job', [JobController::class, 'addWorkProfile']);  
-        Route::get('/getprofile', [JobController::class, 'getProfile']);   
+        Route::get('/getprofile', [JobController::class, 'getProfile']);  
+        Route::get('/picture', [JobController::class, 'editPicture']);  
         Route::post('/review', [ReviewController::class, 'addReview']);  
         Route::get('/reviews', [ReviewController::class, 'getReviews']);
         Route::get('/myreviews', [ReviewController::class, 'getOwnReviews']);  
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/available', [JobController::class, 'changeAvailability']);  
         Route::post('/profile', [AuthController::class, 'editProfile']); 
         Route::post('/editjob', [JobController::class, 'editJob']);  
+        Route::post('/editpicture', [JobController::class, 'editPicture']);  
         Route::post('/getfreelancers', [JobController::class, 'getFreelancers']);  
         Route::get('/getcategories', [JobController::class, 'getCategories']);  
     });
