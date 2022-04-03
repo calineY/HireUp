@@ -107,12 +107,14 @@ class JobController extends Controller
         $validator = Validator::make($request->all(), [
             'category_id'=>'required|numeric',
         ]);
+        $user_id=Auth::user()->id;
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
         $freelancers=Job::join('users', 'users.id', '=', 'jobs.user_id')
         ->where("jobs.category_id", "=", $request->category_id)
         ->where('jobs.available','=',1)
+        ->orderByRaw("FIELD(users.id, ".$user_id.") DESC")
         ->get(['users.name','users.picture_url','users.latitude','users.longitude','jobs.*']);
         return response()->json([
             'message' => 'Success',
