@@ -145,7 +145,7 @@ function calculateRating(reviews){
           headers: { Authorization: `Bearer ${token}` },
         });
         const dataFetched =response.data;
-        // getWorkProfile();
+        getWorkProfile();
         toggleBottomNavigationView();
         console.log(dataFetched)
       } catch (error) {
