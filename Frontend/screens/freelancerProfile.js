@@ -160,7 +160,7 @@ const FreelancerProfile = ({route}) => {
     <View style={myprofileStyles.headerView}>
         <View style={{flex:0.4}}>
           <View  style={myprofileStyles.imageView}>
-            <Image style={myprofileStyles.image} source={{uri:`${fetchURL}/${authUser.user.picture_url}`}}/>
+            <Image style={myprofileStyles.image} source={{uri:`${workProfile.user.picture_url}`}}/>
           </View>
         </View>
         <View style={{ flex:0.6 }}>
