@@ -56,7 +56,16 @@ export default function Freelancers({route,navigation}){
 
     return(
         <SafeAreaView style={globalStyles.safeView}>
+          <View style={{flexDirection:"row",alignSelf:'center',marginBottom:10}}>
+            <View style={{flex:0.85}}>
             <Search placeholder='Search' setValue={(val)=>searchList(val)}/>
+            </View>
+            <TouchableOpacity onPress={toggleBottomNavigationView}>
+            <View style={{backgroundColor:'#fff',height:50,width:50,alignItems:'center',justifyContent:"center",borderRadius:30,elevation:2}}>
+              <AntDesign name="filter" size={37} color="grey"/>
+            </View>
+            </TouchableOpacity>
+          </View>
             <FlatList
                 data={filteredFreelancers}
                 key={(item) => item.id}
