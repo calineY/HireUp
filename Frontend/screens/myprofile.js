@@ -295,9 +295,9 @@ function calculateRating(reviews){
                   <View style={{alignItems:'center'}}>
                     <Input color='#f1f1f1' placeholder={workProfile.job[0].title} value={title} setValue={setTitle}/>
                   </View>
-                  <Text style={globalStyles.modalSubTitle}>Rate per hour</Text>
+                  <Text style={globalStyles.modalSubTitle}>Rate ($/hour)</Text>
                   <View style={{alignItems:'center'}}>
-                    <Input color='#f1f1f1' placeholder={workProfile.job[0].rate_per_hour} value={rate_per_hour} setValue={setRate}/>
+                    <Input color='#f1f1f1' placeholder={workProfile.job[0].rate_per_hour} value={rate_per_hour} setValue={setRate} keyboardType="numeric"/>
                   </View>
                   <Text style={globalStyles.modalSubTitle}>Bio</Text>
                   <View style={{alignItems:'center'}}>
@@ -325,9 +325,9 @@ function calculateRating(reviews){
         <View style={{alignItems:'center'}}>
           <Input color='#f1f1f1' placeholder='' value={title} setValue={setTitle}/>
         </View>
-        <Text style={globalStyles.modalSubTitle}>Rate per hour</Text>
+        <Text style={globalStyles.modalSubTitle}>Rate ($/hour)</Text>
         <View style={{alignItems:'center'}}>
-          <Input color='#f1f1f1' placeholder='' value={rate_per_hour} setValue={setRate}/>
+          <Input color='#f1f1f1' placeholder='$/hour' value={rate_per_hour} setValue={setRate} keyboardType="numeric"/>
         </View>
         <Text style={globalStyles.modalSubTitle}>Bio</Text>
         <View style={{alignItems:'center'}}>
