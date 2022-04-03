@@ -1,5 +1,5 @@
 
-import { View, Text,StyleSheet,Image,ActivityIndicator } from 'react-native'
+import { View, Text,StyleSheet,Image,ActivityIndicator, Platform } from 'react-native'
 import React from 'react'
 import { Fontisto } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
@@ -18,16 +18,58 @@ import fetchURL from '../fetchURL';
 import Dropdown from '../components/dropdown';
 import Input from '../components/input';
 import LargeInput from '../components/largeInput';
+import * as ImagePicker from 'expo-image-picker';
 
-const MyProfile = () => {
+
+const MyProfile = ({navigation}) => {
   const { authUser, setAuthUser } = useContext(userContext);
 
   const [visible, setVisible] = useState(false);
   const token=authUser.access_token;
+
+  // image picker
+  const pickImage = async () => {
+    let permission = await ImagePicker.requestCameraPermissionsAsync();
+    if (!permission.granted) {
+      return;
+    }
+    let data = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    });
+    if (data.cancelled) {
+      return;
+    }
+    let selectedImage = {
+      uri: data.uri,
+      type: `test/${data.uri.split('.')[1]}`,
+      name: `test.${data.uri.split('.')[1]}`,
+    };
+    handleUpload(selectedImage);
+  };
+
+  // Upload to Cloudinary
+  const handleUpload = (image) => {
+    const data = new FormData();
+    data.append('file', image);
+    data.append('upload_preset', 'HireUp');
+    data.append('cloud_name', 'direappfj');
+    fetch('https://api.cloudinary.com/v1_1/direappfj/image/upload', {
+      method: 'post',
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        editPicture(data.url);
+        console.log(data.url)
+      });
+  };
+
+
+  //Toggling the visibility state of the bottom sheet
   const toggleBottomNavigationView = () => {
-    //Toggling the visibility state of the bottom sheet
     setVisible(!visible);
   };
+  
 
 function calculateRating(reviews){
   let sum =0;
@@ -102,7 +144,7 @@ function calculateRating(reviews){
           headers: { Authorization: `Bearer ${token}` },
         });
         const dataFetched =response.data;
-        getWorkProfile();
+        // getWorkProfile();
         toggleBottomNavigationView();
         console.log(dataFetched)
       } catch (error) {
@@ -120,8 +162,24 @@ function calculateRating(reviews){
           headers: { Authorization: `Bearer ${token}` },
         });
         const dataFetched =response.data;
-        getWorkProfile();
+      
         console.log(dataFetched)
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+
+    //api to edit profile picture
+    const editPicture = async (dataURL) => {
+      const url = `${fetchURL}/api/user/picture?image=${dataURL}`;
+      try {
+        const response = await axios.get(url,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log(response.data)
+        getWorkProfile();
+        
       } catch (error) {
         console.warn(error);
       }
@@ -140,6 +198,7 @@ function calculateRating(reviews){
       getWorkProfile();
       getReviews();
   },[] );
+
   return (<View>
     {workProfile && reviews?
 <View style={myprofileStyles.mainView}>
@@ -150,10 +209,11 @@ function calculateRating(reviews){
   <View style={myprofileStyles.innerView}>
     <View style={myprofileStyles.headerView}>
         <View style={{flex:0.4}}>
-          <View  style={myprofileStyles.imageView}>
-            <Image style={myprofileStyles.image} source={{uri:`${fetchURL}/${authUser.user.picture_url}`}}/>
+          <View  style={myprofileStyles.imageView}  >
+            <Image style={myprofileStyles.image} source={{uri:`${workProfile.user.picture_url}`}}/>
           </View>
         </View>
+        <SmallButton text="test" color="black" onPress={pickImage}/>
         <View style={{ flex:0.6 }}>
             <Text style={myprofileStyles.name}>
                 {workProfile.user.name}

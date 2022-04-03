@@ -21,7 +21,7 @@ export const myprofileStyles = StyleSheet.create({
     },
     image:{
         width:100,
-        height:100,
+        height:99,
         borderRadius:100,
         marginBottom:5
     },

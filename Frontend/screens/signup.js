@@ -8,7 +8,6 @@ import { useState } from 'react';
 import PhoneInput from "react-native-phone-number-input";
 import axios from 'axios';
 import fetchURL from '../fetchURL';
-// import LocationPicker from '../components/locationPicker';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import MapView, { Marker } from 'react-native-maps';
@@ -82,6 +81,7 @@ export default function Signup({navigation}){
       latitude: lat,
       longitude: long,
     });
+    console.log(data)
   };
 
 
