@@ -1,14 +1,14 @@
-import { View, Text,FlatList, TouchableOpacity,Image  } from 'react-native'
+import { View, Text,FlatList, TouchableOpacity,Image,Alert  } from 'react-native'
 import React, { useContext } from 'react';
 import { globalStyles } from '../styles/global';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState,useEffect } from 'react';
 import { userContext } from '../context/userContext';
-import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
-import { Ionicons } from '@expo/vector-icons';
 import Freelancer from '../components/freelancer';
 import fetchURL from '../fetchURL';
+import Search from '../components/search';
+
 
 
 
@@ -30,17 +30,35 @@ export default function Freelancers({route,navigation}){
             headers: { Authorization: `Bearer ${token}` },
           });
           const dataFetched =response.data;
-            setFreelancers(dataFetched);
+            setFreelancers(dataFetched.freelancers);
+            setFilteredFreelancers(dataFetched.freelancers);
         } catch (error) {
           console.warn(error);
         }
       };
-    const [freelancers,setFreelancers]=useState();
+    const [freelancers,setFreelancers]=useState([]);
+    const [filteredFreelancers,setFilteredFreelancers]=useState();
+
+
+
+    const searchList = (val)=>{
+      if(val && freelancers){
+      var new_freelancers = freelancers.filter(function (el){
+        return el.name.toLowerCase().includes(val.toLowerCase())||el.title.toLowerCase().includes(val.toLowerCase());
+      });
+      setFilteredFreelancers(new_freelancers);
+      
+      }else{
+        setFilteredFreelancers(freelancers);
+      }
+      
+    }
 
     return(
         <SafeAreaView style={globalStyles.safeView}>
+            <Search placeholder='Search' setValue={(val)=>searchList(val)}/>
             <FlatList
-                data={freelancers && freelancers.freelancers}
+                data={filteredFreelancers}
                 key={(item) => item.id}
                 style={globalStyles.containerList}
                 renderItem={({ item }) => (

@@ -22,6 +22,15 @@ export const globalStyles = StyleSheet.create({
         height:500,
         
     },
+    searchinput:{
+        width:360,
+        height:50,
+		borderRadius: 30,
+		paddingHorizontal: 15,
+		paddingVertical: 10,
+        elevation:2,
+        alignSelf:'center'
+    },
     inputcontainer:{
 		width:360,
         height:50,
