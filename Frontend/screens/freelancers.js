@@ -74,7 +74,33 @@ export default function Freelancers({route,navigation}){
                 <Freelancer name={item.name} rate={item.rate_per_hour} latitude={item.latitude} longitude={item.longitude} title={item.title} picture={item.picture_url} navigation={navigation} item={item} item_id={item.user_id}/>
         )}
       />
+      <BottomSheet
+            visible={visible}
+            //setting the visibility state of the bottom shee
+            onBackButtonPress={toggleBottomNavigationView}
+            //Toggling the visibility state on the click of the back botton
+            onBackdropPress={toggleBottomNavigationView}
+            //Toggling the visibility state on the clicking out side of the sheet
+          >
+            <View style={styles.bottomNavigationView}>
+                <Text style={globalStyles.modalTitle}>Filter</Text>
+                <View style={{flexDirection:"row",alignSelf:'center'}}>
+                  <View style={{flex:0.8,alignItems:'center'}}>
+                    <Text style={globalStyles.modalSubTitle}>Max. rate ($/hour)</Text>
+                    <Input color='#f1f1f1' placeholder='' keyboardType="numeric" width={130} setValue={(value)=>setMaxRate(value)}/>
+                  </View>
+                  <View style={{flex:0.8,alignItems:'center'}}>
+                    <Text style={globalStyles.modalSubTitle}>Max. distance (km)</Text>
+                    <Input color='#f1f1f1' placeholder='' keyboardType="numeric" width={130} setValue={(value)=>setMaxDistance(value)}/>
+                  </View>
+                </View>
       
+                <View style={{flexDirection:"row",alignItems:'center',marginTop:40,alignSelf:'center'}}>
+                  <SmallButton color="#7C9BC9" text="Reset"  onPress={()=>{setFilteredFreelancers(freelancers);toggleBottomNavigationView()}}/>
+                  <SmallButton color="#33C47E" text="Apply" onPress={()=>{filter(max_rate,max_distance);toggleBottomNavigationView()}}/>
+                </View>
+              </View>
+          </BottomSheet>
         </SafeAreaView> 
     )
 }
