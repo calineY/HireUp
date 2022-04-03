@@ -5,7 +5,7 @@ import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import SmallButton from '../components/button'
 import { globalStyles } from '../styles/global';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { useState,useEffect } from 'react';
 import { BottomSheet } from 'react-native-btr';
 import Header from '../components/header'
@@ -19,6 +19,7 @@ import Dropdown from '../components/dropdown';
 import Input from '../components/input';
 import LargeInput from '../components/largeInput';
 import * as ImagePicker from 'expo-image-picker';
+import { Feather } from '@expo/vector-icons';
 
 
 const MyProfile = ({navigation}) => {
@@ -162,7 +163,7 @@ function calculateRating(reviews){
           headers: { Authorization: `Bearer ${token}` },
         });
         const dataFetched =response.data;
-      
+        getWorkProfile();
         console.log(dataFetched)
       } catch (error) {
         console.warn(error);
@@ -208,12 +209,14 @@ function calculateRating(reviews){
   <ScrollView>
   <View style={myprofileStyles.innerView}>
     <View style={myprofileStyles.headerView}>
-        <View style={{flex:0.4}}>
+        <View style={{flex:0.4,flexDirection:"row"}}>
           <View  style={myprofileStyles.imageView}  >
             <Image style={myprofileStyles.image} source={{uri:`${workProfile.user.picture_url}`}}/>
           </View>
+          <TouchableOpacity>
+            <Feather name="edit" size={24} color="#7C9BC9"  onPress={pickImage}/>
+          </TouchableOpacity>
         </View>
-        <SmallButton text="test" color="black" onPress={pickImage}/>
         <View style={{ flex:0.6 }}>
             <Text style={myprofileStyles.name}>
                 {workProfile.user.name}
