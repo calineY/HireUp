@@ -33,7 +33,7 @@ const freelancer = ({name,rate,latitude,longitude,title,picture,navigation,item,
       <TouchableOpacity onPress={()=> navigation.navigate("Freelancer Profile",item)}>
                   <View style={globalStyles.freelancer}>
                     <View style={{ flex:0.3 , marginTop: 10 }}>
-                        <Image style={{width:73,height:73,borderRadius:100,marginBottom:5}} source={{uri:`${fetchURL}/${picture}`}}/>
+                        <Image style={{width:73,height:73,borderRadius:100,marginBottom:5}} source={{uri:`${picture}`}}/>
                     </View>
                     <View style={{ flex:0.7 }}>
                         <Text style={{ fontSize: 22, fontWeight: "bold"}}>{name}</Text>
@@ -54,7 +54,7 @@ const freelancer = ({name,rate,latitude,longitude,title,picture,navigation,item,
                 :<TouchableOpacity onPress={()=> navigation.navigate("My Profile")}>
                   <View style={globalStyles.freelancer}>
                   <View style={{ flex:0.3 , marginTop: 10 }}>
-                      <Image style={{width:73,height:73,borderRadius:100,marginBottom:5}} source={{uri:`${fetchURL}/${picture}`}}/>
+                      <Image style={{width:73,height:73,borderRadius:100,marginBottom:5}} source={{uri:`${picture}`}}/>
                   </View>
                   <View style={{ flex:0.7 }}>
                       <Text style={{ fontSize: 22, fontWeight: "bold"}}>{name}</Text>
