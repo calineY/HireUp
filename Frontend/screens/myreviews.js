@@ -27,7 +27,7 @@ const MyReviews = ({navigation}) => {
       navigation.addListener('focus',()=>{getReviews()});
   });
 
-  const [reviews,setReviews]=useState();
+  const [reviews,setReviews]=useState([]);
 
 
   const getReviews = async () => {
@@ -38,7 +38,7 @@ const MyReviews = ({navigation}) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       const dataFetched =response.data;
-      setReviews(dataFetched);
+      setReviews(dataFetched.reviews);
     } catch (error) {
       console.warn(error);
     }
@@ -51,7 +51,7 @@ const MyReviews = ({navigation}) => {
       {
         headers: { Authorization: `Bearer ${token}` },
       });
-      var new_reviews = reviews.reviews.filter(function (el){
+      var new_reviews = reviews.filter(function (el){
           return el.id!==id ;
         });
       setReviews(new_reviews);
@@ -64,9 +64,9 @@ const MyReviews = ({navigation}) => {
   return (
     <View>
       <Header title='My reviews'/>
-      {reviews && reviews.reviews[0]?
+      {reviews[0]?
             <FlatList
-                data={reviews && reviews.reviews}
+                data={reviews}
                 key={(item) => item.id}
                 style={{width:360,alignSelf:'center',paddingTop:15}}
                 renderItem={({ item }) => (
