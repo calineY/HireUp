@@ -64,6 +64,7 @@ const MyReviews = ({navigation}) => {
   return (
     <View>
       <Header title='My reviews'/>
+      {reviews && reviews.reviews[0]?
             <FlatList
                 data={reviews && reviews.reviews}
                 key={(item) => item.id}
@@ -89,6 +90,8 @@ const MyReviews = ({navigation}) => {
                 
         )}
       />
+    :<View style={{justifyContent:'center',alignItems:'center',paddingTop:100}}><Text>No reviews</Text></View>}
+
     </View>
   )
 }
