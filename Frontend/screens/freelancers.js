@@ -145,7 +145,7 @@ export default function Freelancers({route,navigation}){
                 </View>
                
                 <View style={{flexDirection:"row",alignItems:'center',marginTop:40,alignSelf:'center'}}>
-                  <SmallButton color="#7C9BC9" text="Reset"  onPress={()=>{setFilteredFreelancers(freelancers);toggleBottomNavigationView()}}/>
+                  <SmallButton color="#7C9BC9" text="Reset"  onPress={()=>{setFilteredFreelancers(freelancers);toggleBottomNavigationView();setMaxRate();setMaxDistance()}}/>
                   <SmallButton color="#33C47E" text="Apply" onPress={()=>{filter(max_rate,max_distance);toggleBottomNavigationView()}}/>
                 </View>
               </View>
