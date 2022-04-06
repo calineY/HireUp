@@ -14,7 +14,7 @@ export const globalStyles = StyleSheet.create({
         top:-200,
     },
     container2:{
-        top:-200  
+        top:-208  
     },
     container3:{
         
@@ -147,10 +147,14 @@ export const globalStyles = StyleSheet.create({
         color:'#5a5a5a'
      },
     loadingView:{
-    justifyContent:'center',
-    alignItems:'center',
-    flex:1,
-    alignContent:'center',
-    padding:200
+        justifyContent:'center',
+        alignItems:'center',
+        flex:1,
+        alignContent:'center',
+        padding:200
+    },
+    errorLoginSignup:{
+        top:-200,
+        color:"red"
     }
   });
