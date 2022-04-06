@@ -17,10 +17,8 @@ export const globalStyles = StyleSheet.create({
         top:-208  
     },
     container3:{
-        
         top:-200,
-        height:500,
-        
+        height:475,
     },
     searchinput:{
         width:295,
@@ -28,8 +26,7 @@ export const globalStyles = StyleSheet.create({
 		borderRadius: 30,
 		paddingHorizontal: 15,
 		paddingVertical: 10,
-        elevation:2,
-        
+        elevation:2, 
     },
     inputcontainer:{
 		
