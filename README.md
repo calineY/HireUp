@@ -4,7 +4,6 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
 
-**[PROJECT PHILOSOPHY](https://github.com/julescript/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
 
 </div>
 
@@ -13,54 +12,63 @@
 
 <img src="./readme/title2.svg"/>
 
-> The Well app is a mental health and mindfulness app built on top of the science of positive psychology. The Well app is more than just another meditation or journaling app; it encourages you to enhance and reflect on your day with structured, guided activities.
+> HireUp is a social app that allows users to find freelancers in many fields, offering a variety of services from small tasks like babysitting to bigger projects like UX/UI design, and filter them by rate/distance.
 > 
-> There are 5 daily tasks that the Well app asks you to complete each day: record 3 gratitudes, write a journal entry, perform 3 acts of kindness, exercise for 20 minutes, and meditate for 15 minutes.
-
+> Users can easily offer their service in the same fields for a rate per hour.
+> 
 ### User Stories
-- As a user, I want to browsse ablums, so that I can find quick links
-- As a user, I want to browsse ablums, so that I can find quick links
-- As a user, I want to browsse ablums, so that I can find quick links
+- As a user, I want to find freelancers in many fields, so that I can hire them.
+- As a user, I want to search for freelancers by name and title, so that I find the one I want to contact.
+- As a user, I want to filter freelancers by rate per hour and by distance, so it becomes easier to find the one I want to contact.
+- As a user, I want to be able to contact freelancers available, so that I can hire them.
+- As a user, I want to check the freelancers reviews, so that I can have an idea about them and their work.
+- As a user, I want to be able to post my service, so that other users can hire me as well.
+- As a user, I want to recieve messages from other users about possible opportunities, so that we can discuss the opportunity.
 
 <br><br>
 
 <img src="./readme/title3.svg"/>
 
-> This design was planned before on paper, then moved to Figma app for the fine details.
-Note that i didn't use any styling library or theme, all from scratch and using pure css modules
+> The below screenshots show some aspects of the design that was planned before on paper, then moved to Figma app for the fine details.
 
-| Landing  | Home/Search  |
-| -----------------| -----|
-| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
 
-| Artists results  | Artist's Albums  |
+| Login/Sign up  | Home/Freelancers in category  |
+| -----------| -----|
+| <img src="./readme/figma1.png"/> |<img src="./readme/figma2.png"/>|
+
+| Freelancer profile/Add review  | My profile/Edit work profile  |
 | -----------------| -----|
-| ![Artists results](https://github.com/julescript/spotifyndr/blob/master/demo/Artists_Page.jpg) | ![Artist's Albums](https://github.com/julescript/spotifyndr/blob/master/demo/Albums_Page.jpg) |
+|  <img src="./readme/figma3.png"/>|<img src="./readme/figma4.png"/>  |
 
 
 <br><br>
 
 <img src="./readme/title4.svg"/>
 
-Here's a brief high-level overview of the tech stack the Well app uses:
+Here's a brief high-level overview of the tech stack used in HireUp:
 
-- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
-- To send local push notifications, the app uses the [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) package which supports Android, iOS, and macOS.
-  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
+- React Native, a JavaScript framework for writing mobile applications.
+- Laravel, a PHP framework. It follows a model-view-controller design pattern.
+- MySQL, a relational database management system (RDBMS) that is based on structured query language (SQL).
 
 
 
 <br><br>
 <img src="./readme/title5.svg"/>
 
-> Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+> Uing the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are some screenshots from the real app
 
-| Landing  | Home/Search  |
-| -----------------| -----|
-| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
+| Login| Sign up  | Home  |
+| ------------|----------|-----------|
+|<img src="./readme/sccreenshot1.png"/>|<img src="./readme/sccreenshot2.png"/>  | <img src="./readme/sccreenshot3.png"/> |
 
+| Freelancers| Search| Filter by rate/distance |
+| ------------|----------|-----------|
+|<img src="./readme/sccreenshot4.png"/>|<img src="./readme/sccreenshot11.png"/>  | <img src="./readme/sccreenshot12.png"/> |
+
+| Freelancer| Whatsapp redirection | Add review |
+| ------------|----------|-----------|
+|<img src="./readme/sccreenshot5.png"/>|<img src="./readme/sccreenshot7.png"/>  | <img src="./readme/sccreenshot6.png"/> |
 
 <br><br>
 <img src="./readme/title6.svg"/>
