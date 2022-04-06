@@ -55,6 +55,7 @@ export default function Login({ navigation }) {
 		try {
 			const response = await axios.post(url, data);
 			const dataFetched = response.data;
+      setError("");
 			setAuthUser(dataFetched);
 		} catch (error) {
 			setError("Account doesn't exist.");
