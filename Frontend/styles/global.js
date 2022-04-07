@@ -153,5 +153,9 @@ export const globalStyles = StyleSheet.create({
     errorLoginSignup:{
         top:-200,
         color:"red"
+    },
+    errorMessage:{
+        alignSelf:"center",
+        color:"red",
     }
   });

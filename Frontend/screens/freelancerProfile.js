@@ -1,6 +1,5 @@
 import { View, Text,Linking,StyleSheet, Easing,ActivityIndicator,Image  } from 'react-native'
 import React from 'react'
-import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -37,6 +36,7 @@ const FreelancerProfile = ({route}) => {
         getReviews();
     },[] );
 
+    //function to get total rating and reviews count
     function calculateRating(reviews){
         let sum =0;
         let ratings=0;
@@ -63,9 +63,27 @@ const FreelancerProfile = ({route}) => {
         }
     };
 
+    const getReviews = async () => {
+        const url = `${fetchURL}/api/user/reviews?user_id=${user_id}`;
+        try {
+          const response = await axios.get(url,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const dataFetched =response.data;
+          setReviews(dataFetched);
+        } catch (error) {
+          console.warn(error);
+        }
+    };
 
+    const [error,setError]=useState("");
     const reviewBody={from_user_id:authUser.id,to_user_id:user_id,rating,review}
     const addReview = async () => {
+    if(!rating || ! review){
+        setError("Please select rating and write a review.");
+        return;
+    }
     const url = `${fetchURL}/api/user/review`;
     try {
         const response = await axios.post(url,reviewBody,
@@ -108,37 +126,29 @@ const FreelancerProfile = ({route}) => {
         }
       };
 
+    //stars used for rating
     const images = {
         starFilled: require('../assets/star_filled.png'),
         starUnfilled: require('../assets/star_unfilled.png')
       }
+
+    //link to redirect to whatsapp to chat with freelancer
     const redirectToWhatsapp = (phone) =>{
         Linking.openURL(`whatsapp://send?text=Hello I found you on HireUp!&phone=${phone}`);
     }
     const [visible, setVisible] = useState(false);
 
-  const toggleBottomNavigationView = () => {
-    //Toggling the visibility state of the bottom sheet
-    setVisible(!visible);
-  };
+    const toggleBottomNavigationView = () => {
+        //Toggling the visibility state of the bottom sheet
+        setVisible(!visible);
+        setError("");
+    };
 
-  const getReviews = async () => {
-    const url = `${fetchURL}/api/user/reviews?user_id=${user_id}`;
-    try {
-      const response = await axios.get(url,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const dataFetched =response.data;
-      setReviews(dataFetched);
-    } catch (error) {
-      console.warn(error);
-    }
-  };
+
 
     const lat1=authUser.user.latitude;
     const lon1=authUser.user.longitude;
-
+  //function to calculate distance between auth user and freelancer
   function calculateDistance(lat2,lon2){
     var R = 6371; // Radius of the earth in km
     var dLat = (lat2 - lat1) * (Math.PI / 180);  // deg2rad below
@@ -225,14 +235,15 @@ const FreelancerProfile = ({route}) => {
  </View>
  <BottomSheet
     visible={visible}
-    //setting the visibility state of the bottom shee
+    //setting the visibility state of the bottom sheet
     onBackButtonPress={toggleBottomNavigationView}
-    //Toggling the visibility state on the click of the back botton
+    //Toggling the visibility state on the click of the back button
     onBackdropPress={toggleBottomNavigationView}
     //Toggling the visibility state on the clicking out side of the sheet
     >
     <View style={styles.bottomNavigationView}>
         <Text style={globalStyles.modalTitle}>Add review</Text>
+        <Text style={globalStyles.errorMessage}>{error}</Text>
         <Text style={globalStyles.modalSubTitle}>Rate</Text>
         <Rating
         onChange={rated => setRating(rated)}
@@ -260,7 +271,7 @@ const styles = StyleSheet.create({
     bottomNavigationView: {
       backgroundColor: '#fff',
       width: '100%',
-      height: 350,
+      height: 370,
       padding:20,
       borderTopEndRadius:20,
       borderTopStartRadius:20
