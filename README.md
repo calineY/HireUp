@@ -60,15 +60,15 @@ Here's a brief high-level overview of the tech stack used in HireUp:
 
 | Login| Sign up  | Home  |
 | ------------|----------|-----------|
-|<img src="./readme/sccreenshot1.png"/>|<img src="./readme/sccreenshot2.png"/>  | <img src="./readme/sccreenshot3.png"/> |
+|<img src="./readme/sccreenshot1.png" width="500" height="700"/>|<img src="./readme/sccreenshot2.png" width="500" height="700"/>  | <img src="./readme/sccreenshot3.png" width="500" height="700"/> |
 
 | Freelancers| Search| Filter by rate/distance |
 | ------------|----------|-----------|
-|<img src="./readme/sccreenshot4.png"/>|<img src="./readme/sccreenshot11.png"/>  | <img src="./readme/sccreenshot12.png"/> |
+|<img src="./readme/sccreenshot4.png" width="500" height="700"/>|<img src="./readme/sccreenshot11.png" width="500" height="700"/>  | <img src="./readme/sccreenshot12.png" width="500" height="700"/> |
 
 | Freelancer| Whatsapp redirection | Add review |
 | ------------|----------|-----------|
-|<img src="./readme/sccreenshot5.png"/>|<img src="./readme/sccreenshot7.png"/>  | <img src="./readme/sccreenshot6.png"/> |
+|<img src="./readme/sccreenshot5.png" width="500" height="700"/>|<img src="./readme/sccreenshot7.png" width="500" height="700"/>  | <img src="./readme/sccreenshot6.png" width="500" height="700"/> |
 
 <br><br>
 <img src="./readme/title6.svg"/>
