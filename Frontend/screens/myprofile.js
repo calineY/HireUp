@@ -120,7 +120,17 @@ function calculateRating(reviews){
       }
     };
 
+    const [error,setError]=useState("");
+
     const editWorkProfile = async () => {
+      if (!category_id || !title || !rate_per_hour || !bio){
+        setError("Please fill all fields.");
+        return;
+      }
+      if(isNaN(rate_per_hour)){
+        setError("Rate per hour should be a number.");
+        return;
+      }
       const url = `${fetchURL}/api/user/editjob`;
       const body={category_id,title,rate_per_hour,bio};
       try {
@@ -131,13 +141,21 @@ function calculateRating(reviews){
         const dataFetched =response.data;
         getWorkProfile();
         toggleBottomNavigationView();
-        console.log(dataFetched)
+        setError("");
       } catch (error) {
         console.warn(error);
       }
     };
 
     const addWorkProfile = async () => {
+      if (!category_id || !title || !rate_per_hour || !bio){
+        setError("Please fill all fields.");
+        return;
+      }
+      if(isNaN(rate_per_hour)){
+        setError("Rate per hour should be a number.");
+        return;
+      }
       const url = `${fetchURL}/api/user/job`;
       const body={category_id,title,rate_per_hour,bio};
       try {
@@ -148,7 +166,7 @@ function calculateRating(reviews){
         const dataFetched =response.data;
         getWorkProfile();
         toggleBottomNavigationView();
-        console.log(dataFetched)
+        setError("");
       } catch (error) {
         console.warn(error);
       }
@@ -304,6 +322,7 @@ function calculateRating(reviews){
             //Toggling the visibility state on the clicking out side of the sheet
           >
               <View style={styles.bottomNavigationView}>
+                  <Text style={globalStyles.errorMessage}>{error}</Text>
                   <Text style={globalStyles.modalTitle}>Edit</Text>
                   <Text style={globalStyles.modalSubTitle}>Category</Text>
                   <View style={{alignItems:'center'}}>
@@ -334,6 +353,7 @@ function calculateRating(reviews){
           onBackdropPress={toggleBottomNavigationView}
           //Toggling the visibility state on the clicking out side of the sheet
         ><View style={styles.bottomNavigationView}>
+        <Text style={globalStyles.errorMessage}>{error}</Text>
         <Text style={globalStyles.modalTitle}>Add work profile</Text>
         <Text style={globalStyles.modalSubTitle}>Category</Text>
         <View style={{alignItems:'center'}}>
@@ -369,7 +389,7 @@ const styles = StyleSheet.create({
     bottomNavigationView: {
       backgroundColor: '#fff',
       width: '100%',
-      height: 560,
+      height: 580,
       padding:10,
       borderTopEndRadius:20,
       borderTopStartRadius:20
