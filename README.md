@@ -56,19 +56,19 @@ Here's a brief high-level overview of the tech stack used in HireUp:
 <br><br>
 <img src="./readme/title5.svg"/>
 
-> Uing the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are some screenshots from the real app
+> Using the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are some screenshots from the real app
 
-| Login| Sign up  | Home  |
+| Login screen| Sign up screen | Home screen |
 | ------------|----------|-----------|
-|<img src="./readme/sccreenshot1.png"  width="500" height="600"/>|<img src="./readme/sccreenshot2.png"  width="500" height="600"/>  | <img src="./readme/sccreenshot3.png"  width="500" height="600"/> |
+|<img src="./readme/sccreenshot1.png"  />|<img src="./readme/sccreenshot2.png"  />  | <img src="./readme/sccreenshot3.png"  /> |
 
-| Freelancers| Search| Filter by rate/distance |
+| Freelancers screen| Search freelancers | Filter freelancers by rate and distance |
 | ------------|----------|-----------|
-|<img src="./readme/sccreenshot4.png"  width="500" height="600"/>|<img src="./readme/sccreenshot11.png" width="500" height="600"/>  | <img src="./readme/sccreenshot12.png"  width="500" height="600"/> |
+|<img src="./readme/sccreenshot4.png" />|<img src="./readme/sccreenshot11.png"/>  | <img src="./readme/sccreenshot12.png" /> |
 
-| Freelancer| Whatsapp redirection | Add review |
+| Freelancer profile| Whatsapp redirection | Add review in freelancer profile |
 | ------------|----------|-----------|
-|<img src="./readme/sccreenshot5.png" width="500" height="600"/>|<img src="./readme/sccreenshot7.png" width="500" height="600"/>  | <img src="./readme/sccreenshot6.png" width="500" height="600"/> |
+|<img src="./readme/sccreenshot5.png" />|<img src="./readme/sccreenshot7.png" />  | <img src="./readme/sccreenshot6.png" /> |
 
 <br><br>
 <img src="./readme/title6.svg"/>
