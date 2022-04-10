@@ -71,15 +71,56 @@ Here's a brief high-level overview of the tech stack used in HireUp:
 |<img src="./readme/sccreenshot5.png" />|<img src="./readme/sccreenshot7.png" />  | <img src="./readme/sccreenshot6.png" /> |
 
 <br><br>
+<br><br>
+> Here's some short gifs from the real app
+
+
+| Register| Home | Contact |Review|
+| ------------|----------|-----------|-----------|
+|<img src="./readme/chrome-capture.gif" />|<img src="./readme/chrome-capture1.gif"  />  |<img src="./readme/chrome-capture2.gif"/>  |<img src="./readme/chrome-capture3.gif"/>  |
+
+|Search |Filter |Filter |Add work profile |
+|-----------|-----------|-----------|-----------|
+|<img src="./readme/chrome-capture4.gif"/>  |<img src="./readme/chrome-capture5.gif"/>  |<img src="./readme/chrome-capture6.gif"/>  |<img src="./readme/chrome-capture7.gif"/>  |
+
+<br><br>
 <img src="./readme/title6.svg"/>
 
 
-> This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+>To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+* Download and install [Node.js](https://nodejs.org/en/)
+
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+* Expo CLI
+  ```sh
+  npm install --global expo-cli
+  ```
+* Expo Go mobile app
+ 
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/calineY/HireUp.git
+2. Navigate to the Frontend folder and install dependencies
+   ```sh
+   cd HireUp/Frontend
+   npm install
+   ```
+3. Run the start up command
+   ```sh
+   expo start
+   ```
+4. Scan the generated QR code with your camera (ios) or through the Expo Go application (android).
+
+<!-- This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
   npm install npm@latest -g
@@ -102,4 +143,4 @@ _Below is an example of how you can instruct your audience on installing and set
    ```js
    const API_KEY = 'ENTER YOUR API';
    ```
-
+ -->
