@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Text, View, Image, ImageBackground, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, Image, ImageBackground, TouchableOpacity, FlatList,Alert } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { homeStyles } from '../styles/homeStyles';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -8,17 +8,49 @@ import axios from 'axios';
 import { userContext } from '../context/userContext';
 import fetchURL from '../fetchURL';
 import { categoriesContext } from '../context/categoriesContext';
+import Constants from 'expo-constants';
+import * as Location from 'expo-location';
 
 export default function Home({ navigation }) {
 	const { authUser, setAuthUser } = useContext(userContext);
+
+	
     //saving categories to fill dropdown menu in my profile screen
 	const { categoriesArray, setCategoriesArray } = useContext(categoriesContext);
 	const token = authUser.access_token;
 
 	useEffect(() => {
 		getCategories();
+
+		//optional location update
+		(async () => {
+			if (Platform.OS === 'android' && !Constants.isDevice) {
+			  setErrorMsg(
+				'Oops, this will not work on Snack in an Android emulator. Try it on your device!'
+			  );
+			  return;
+			}
+			let { status } = await Location.requestForegroundPermissionsAsync();
+			if (status !== 'granted') {
+			  setErrorMsg('Permission to access location was denied');
+			  
+			}else{
+			  try{
+				let location=await Location.getCurrentPositionAsync({}).then((value)=>{
+				setAuthUser((oldState)=>{const newUser = oldState.user
+					newUser.latitude = value.coords.latitude
+					newUser.longitude=value.coords.longitude; 
+					const newState={...oldState,user:newUser}
+					return newState})
+			  });
+			  updateLocation();
+			  }catch(err){
+				console.log("Location not updated.")
+			}
+			}
+		  })();
 	}, []);
-    
+	 
 	const getCategories = async () => {
 		const url = `${fetchURL}/api/user/getcategories`;
 		try {
@@ -29,7 +61,21 @@ export default function Home({ navigation }) {
 			setCategoriesArray(dataFetched);
 			setCategories(dataFetched);
 		} catch (error) {
-			console.warn(error);
+			console.log(error);
+		}
+	};
+
+	const updateLocation = async () => {
+		const url = `${fetchURL}/api/user/profile`;
+		const body={name:authUser.user.name, latitude:authUser.user.latitude,longitude:authUser.user.longitude}
+		try {
+			const response = await axios.post(url, body,{
+				headers: { Authorization: `Bearer ${token}` }
+			});
+			const dataFetched = response.data;
+			console.log(dataFetched)
+		} catch (error) {
+			console.log(error);
 		}
 	};
 
