@@ -114,11 +114,11 @@ export default function Signup({navigation}){
       <View style={globalStyles.container3}>
       <ScrollView >
           <Text style={globalStyles.inputLabel}> Full Name</Text>
-          <Input placeholder='Jhon Doe' value={name} setValue={setName}/>
+          <Input placeholder='Enter your name' value={name} setValue={setName}/>
           <Text style={globalStyles.inputLabel}> Email</Text>
-          <Input placeholder='Jhon@mail.com' value={email} setValue={setEmail}/>
+          <Input placeholder='Example@mail.com' value={email} setValue={setEmail}/>
           <Text style={globalStyles.inputLabel}>Password</Text>
-          <Input placeholder='Your password' secureTextEntry={true} value={password} setValue={setPassword}/>
+          <Input placeholder='Enter your password' secureTextEntry={true} value={password} setValue={setPassword}/>
           <Text style={globalStyles.inputLabel}>Confirm Password</Text>
           <Input placeholder='Confirm password' secureTextEntry={true} value={password_confirmation} setValue={setPasswordConfirmation}/>
           <Text style={globalStyles.inputLabel}>Phone Number</Text>

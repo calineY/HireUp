@@ -68,9 +68,9 @@ export default function Login({ navigation }) {
 			<Text style={globalStyles.errorLoginSignup}>{error}</Text>
 			<View style={globalStyles.container2}>
 				<Text style={globalStyles.inputLabel}> Email</Text>
-				<Input placeholder="Jhon@mail.com" value={data.email} setValue={handleEmail} />
+				<Input placeholder="Enter your email" value={data.email} setValue={handleEmail} />
 				<Text style={globalStyles.inputLabel}>Password</Text>
-				<Input placeholder="Your password" secureTextEntry={true} value={data.password} setValue={handlePassword}/>
+				<Input placeholder="Enter your password" secureTextEntry={true} value={data.password} setValue={handlePassword}/>
 				<View style={globalStyles.margin} />
 				<Button text="Login" onPress={loginFetch} />
 				<TouchableOpacity onPress={() => navigation.navigate('Register')}>
