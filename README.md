@@ -64,7 +64,7 @@ Here's a brief high-level overview of the tech stack used in HireUp:
 
 
 
-|Filter by rate and distance | Freelancer profile| Whatsapp redirection |
+| Filter by maximum rate and distance| Freelancer profile | Whatsapp redirection|
 | ------------|----------|----------|
 |<img src="./readme/sccreenshot12.png" /> |<img src="./readme/sccreenshot5.png" />|<img src="./readme/sccreenshot7.png" />  | 
 
