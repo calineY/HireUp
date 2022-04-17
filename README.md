@@ -58,20 +58,17 @@ Here's a brief high-level overview of the tech stack used in HireUp:
 
 > Using the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are some screenshots from the real app
 
-| Login screen| Sign up screen | Home screen |
-| ------------|----------|-----------|
-|<img src="./readme/sccreenshot1.png"  />|<img src="./readme/sccreenshot2.png"  />  | <img src="./readme/sccreenshot3.png"  /> |
+| Sign up screen | Home screen |Search  |
+|----------|-----------|-----------|
+|<img src="./readme/sccreenshot2.png"  />  | <img src="./readme/sccreenshot3.png"  /> |<img src="./readme/sccreenshot11.png"/>  |
 
-| Freelancers screen| Search freelancers | Filter freelancers by rate and distance |
-| ------------|----------|-----------|
-|<img src="./readme/sccreenshot4.png" />|<img src="./readme/sccreenshot11.png"/>  | <img src="./readme/sccreenshot12.png" /> |
 
-| Freelancer profile| Whatsapp redirection | Add review in freelancer profile |
-| ------------|----------|-----------|
-|<img src="./readme/sccreenshot5.png" />|<img src="./readme/sccreenshot7.png" />  | <img src="./readme/sccreenshot6.png" /> |
 
-<br><br>
-<br><br>
+|Filter by rate and distance | Freelancer profile| Whatsapp redirection |
+| ------------|----------|----------|
+|<img src="./readme/sccreenshot12.png" /> |<img src="./readme/sccreenshot5.png" />|<img src="./readme/sccreenshot7.png" />  | 
+
+<br></br>
 > Here's some short gifs from the real app
 
 
